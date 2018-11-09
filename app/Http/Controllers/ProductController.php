@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 use App\Entities\RegisterProduct;
 
 class ProductController extends Controller
@@ -14,11 +15,10 @@ class ProductController extends Controller
      *
      * @return void
      */
-    // public function __construct(RegisterProduct $products)
-    public function __construct()
+    public function __construct(RegisterProduct $products)
     {
         $this->middleware('auth:admin');
-        // $this->products = $products;
+        $this->products = $products;
     }
 
     public function index()
@@ -28,24 +28,29 @@ class ProductController extends Controller
 
     public function create()
     {
+        $categories = Category::orderBy('title')->pluck('title','id');
         
-        return view('product.create');
+        return view('product.create',compact('categories'));
+
     }
 
     
     public function store(Request $request)
     { 
-        // $request->validate([
-        //     'plate_number' => 'required',
-        //     'brand' => 'required',
-        //     'model' => 'required',
-        //     'year' => 'required',
-        //     'color' => 'required',
-        //     'type' => 'required'
-        //     ]);
-            
-        // $product = $this->products->registerProduct($request->all());
-            
+        $request->validate([
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            ]);
+
+        $products = new Product;
+
+        $products->description = $request->description;
+        $products->price = $request->price;
+        $products->category_id = $request->category_id;
+
+        $products->save();
+                    
         return redirect('/admin');
     }
 }

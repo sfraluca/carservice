@@ -12,11 +12,11 @@ class CarService extends Model
 
     public function cars()
     {
-        return $this->belongsToMany(Car::class);
+         return $this->belongsTo(Car::class);
     }
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class);
-    }
+    // public function products()
+    // {
+    //     return $this->belongsToMany(Product::class);
+    // }
 }

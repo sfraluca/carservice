@@ -15,7 +15,10 @@ class RegisterCar
             'model' => $params['model'],
             'year' => $params['year'],
             'color' => $params['color'],
-            'type' => $params['type'],
+            'KW' => $params['KW'],
+            'CP' => $params['CP'],
+            'car_body' => $params['car_body'],
+            'motor' => $params['motor'],
         ]);
         
         return $car;

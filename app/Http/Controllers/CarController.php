@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Car;
 use App\Entities\RegisterCar;
 
-
 class CarController extends Controller
 {
     protected $cars;
+
     /**
      * Create a new controller instance.
      *
@@ -33,19 +33,22 @@ class CarController extends Controller
     }
 
     
-    public function store(Request $request)
-    { 
+    public function store(Request $request) 
+    {
         $request->validate([
             'plate_number' => 'required',
             'brand' => 'required',
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
-            'type' => 'required'
-            ]);
-            
+            'KW' => 'required',
+            'CP' => 'required',
+            'car_body' => 'required',
+            'motor' => 'required',
+            ]); 
+           
         $car = $this->cars->registerCar($request->all());
-            
+        
         return redirect('/admin');
     }
 }
