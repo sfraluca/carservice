@@ -56,7 +56,7 @@
                                 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.createAdmin') }}" >
+                                    <a class="dropdown-item" href="{{ route('create_admin') }}" >
                                     Create admin account 
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

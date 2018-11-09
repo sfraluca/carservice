@@ -20,14 +20,11 @@ class CreateCarsTable extends Migration
             $table->string('model');
             $table->integer('year');
             $table->string('color');
-            $table->string('type');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('admin_id');
+            $table->string('KW');
+            $table->string('CP');
+            $table->string('car_body');
+            $table->string('motor');
             $table->timestamps();
-
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 
