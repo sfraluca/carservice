@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
+
 class RolesSeeder extends Seeder
 {
     /**
@@ -19,6 +20,11 @@ class RolesSeeder extends Seeder
                 'update-car' => true,
                 'publish-car' => true,
                 'delete-car' => true,
+
+                'create-admin' => true,
+                'update-admin' => true,
+                'view-admin' => true,
+                'delete-admin' => true,
             ]),
         ]);
         
