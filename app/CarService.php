@@ -15,8 +15,8 @@ class CarService extends Model
          return $this->belongsTo(Car::class);
     }
 
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class);
-    // }
+    public function products()
+    {
+         return $this->belongsTo(Product::class);
+    }
 }

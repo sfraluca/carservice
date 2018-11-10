@@ -26,32 +26,40 @@ class CarServiceController extends Controller
 
     public function index()
     {
-      
         return view('car_service.index');
     }
 
     public function create()
     {
-        $car = Car::orderBy('plate_number')->pluck('plate_number','id');
-        $product = Product::orderBy('description')->pluck('description','id');
+        $cars = Car::orderBy('plate_number')->pluck('plate_number','id');
+        $products = Product::orderBy('description')->pluck('description','id');
         
        // return view('auth.register-admin.create',compact('roles'));
-        return view('car_service.create', compact('car','product'));
+        return view('car_service.create', compact('cars','products'));
     }
 
     
     public function store(Request $request)
     { 
-        // $request->validate([
-        //     'plate_number' => 'required',
-        //     'brand' => 'required',
-        //     'model' => 'required',
-        //     'year' => 'required',
-        //     'color' => 'required',
-        //     'type' => 'required'
-        //     ]);
+        $request->validate([
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'service_date' => 'required',
+            'car_id' => 'required',
+            'product_id' => 'required'
+            ]);
             
-        // $car_service = $this->car_services->registerCarService($request->all());
+            $services = new CarService;
+
+            $services->title = $request->title;
+            $services->price = $request->price;
+            $services->description = $request->description;
+            $services->service_date = $request->service_date;
+            $services->car_id = $request->car_id;
+            $services->product_id = $request->product_id;
+    
+            $services->save();
             
         return redirect('/admin');
     }
