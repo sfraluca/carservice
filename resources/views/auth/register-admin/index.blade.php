@@ -14,9 +14,13 @@
 <div>  {{ $admin->email }}</div>
                   
 <div>    {{ $admin->job_title }}</div>
-@endforeach
-                
 
+<form method="POST" class="delete_form" action ="{{ route('delete_admin', $admin->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form> 
+@endforeach
                   </div>
             </div>
         </div>

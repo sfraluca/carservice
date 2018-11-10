@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use App\Product;
 use App\Entities\RegisterCategory;
 
 class CategoryController extends Controller
@@ -49,4 +50,37 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('category.show',compact('category'));
     }
+
+    public function edit($id)
+    {
+        $category = Category::find($id);
+
+        return view('category.edit',compact('category'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            ]); 
+
+        $category = Category::find($id);
+
+        $category->title = $request->input('title');
+
+        $category->save();
+
+        return redirect()->route('show_category', $category->id);
+    }
+
+    public function destroy($id)
+    {
+        $products = Product::where('category_id', $id);
+        $products->delete();
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('list_all_category');
+    }
+    
 }

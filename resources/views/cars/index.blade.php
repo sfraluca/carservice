@@ -6,11 +6,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                All admins
+                All cars
                 </div>
-@foreach ($cars as $car)
-{{ $car->plate_number }}
-              
+                @foreach ($cars as $car)
+                {{ $car->plate_number }}
                 {{ $car->brand }}
                 {{ $car->model }}
                 {{ $car->year }}
@@ -19,8 +18,13 @@
                 {{ $car->CP }}
                 {{ $car->car_body }}
                 {{ $car->motor }}
+                <form method="POST" class="delete_form" action ="{{ route('delete_car', $car->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
                 <br>
-@endforeach
+            @endforeach
                 
 
                   </div>

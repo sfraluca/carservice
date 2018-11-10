@@ -35,7 +35,6 @@ class CarServiceController extends Controller
         $cars = Car::orderBy('plate_number')->pluck('plate_number','id');
         $products = Product::orderBy('description')->pluck('description','id');
         
-       // return view('auth.register-admin.create',compact('roles'));
         return view('car_service.create', compact('cars','products'));
     }
 
@@ -70,5 +69,48 @@ class CarServiceController extends Controller
         $services = CarService::find($id);
         
         return view('car_service.show', compact('services'));
+    }
+
+    public function edit($id)
+    {
+        $cars = Car::orderBy('plate_number')->pluck('plate_number','id');
+        $products = Product::orderBy('description')->pluck('description','id');
+        
+        $services = CarService::find($id);
+        return view('car_service.edit',compact('services', 'cars','products'));   
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'service_date' => 'required',
+            'car_id' => 'required',
+            'product_id' => 'required'
+            ]); 
+
+        $services = CarService::find($id);
+        
+
+        $services->title = $request->input('title');
+        $services->price = $request->input('price');
+        $services->description = $request->input('description');
+        $services->service_date = $request->input('service_date');
+        $services->car_id = $request->input('car_id');
+        $services->product_id = $request->input('product_id');
+
+        $services->save();
+
+        return redirect()->route('show_service', $services->id);
+    }
+
+    public function destroy($id)
+    {
+        $services = CarService::find($id);
+        $services->delete();
+        
+        return redirect()->route('list_all_car_service');
     }
 }

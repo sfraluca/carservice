@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Car;
+use App\CarService;
 use App\Entities\RegisterCar;
 
 class CarController extends Controller
@@ -94,5 +95,15 @@ class CarController extends Controller
         $car->save();
 
         return redirect()->route('show_car', $car->id);
+    }
+
+    public function destroy($id)
+    {
+        $services = CarService::where('car_id', $id);
+        $services->delete();
+        $car = Car::find($id);
+        $car->delete();
+
+        return redirect()->route('list_all_cars');
     }
 }

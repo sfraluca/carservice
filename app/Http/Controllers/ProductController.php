@@ -61,4 +61,39 @@ class ProductController extends Controller
         
         return view('product.show',compact('products'));
     }
+
+    public function edit($id)
+    {
+        $categories = Category::orderBy('title')->pluck('title','id');
+        $products = Product::find($id);
+        return view('product.edit',compact('categories', 'products'));   
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'price' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            ]); 
+
+        $product = Product::find($id);
+        
+
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->category_id = $request->input('category_id');
+
+        $product->save();
+
+        return redirect()->route('show_product', $product->id);
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->route('list_all_products');
+    }
 }

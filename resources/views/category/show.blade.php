@@ -8,7 +8,11 @@
                 <div class="panel-heading">
                 {{ $category->title }}
                 </div>
-
+                <form method="POST" class="delete_form" action ="{{ route('delete_category', $category->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
                 
 
                   </div>

@@ -16,7 +16,11 @@
                 {{ $car->CP }}
                 {{ $car->car_body }}
                 {{ $car->motor }}
-                
+                <form method="POST" class="delete_form" action ="{{ route('delete_car', $car->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
 
                   </div>
             </div>
