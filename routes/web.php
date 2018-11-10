@@ -92,6 +92,12 @@ Route::group(['prefix'=>'admins'], function(){
     Route::get('/cars/show/{id}', 'CarController@show')
         ->name('show_car');
 
+    Route::get('/cars/edit/{id}', 'CarController@edit')
+        ->name('edit_car');
+
+    Route::post('/cars/edit/{id}', 'CarController@update')
+        ->name('update_car');
+
 //CAR SERVICE
 
     //to checked
