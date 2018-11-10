@@ -5,49 +5,48 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
-// use App\Entities\RegisterCategory;
+use App\Entities\RegisterCategory;
 
 class CategoryController extends Controller
 {
-    protected $categories;
+    protected $category;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    // public function __construct(RegisterCategory $categories)
-    public function __construct()
-
+    public function __construct(RegisterCategory $category)
     {
         $this->middleware('auth:admin');
-        // $this->categories = $categories;
+        $this->category = $category;
     }
 
     public function index()
     {
-        return view('category.index');
+        $categories = Category::all();
+        return view('category.index',compact('categories'));
     }
 
     public function create()
     {
-        
         return view('category.create');
     }
 
     
     public function store(Request $request)
     { 
-        // $request->validate([
-        //     'plate_number' => 'required',
-        //     'brand' => 'required',
-        //     'model' => 'required',
-        //     'year' => 'required',
-        //     'color' => 'required',
-        //     'type' => 'required'
-        //     ]);
+        $request->validate([
+            'title' => 'required',
+            ]);
+          
+        $category = $this->category->registerCategory($request->all());
             
-        // $category = $this->categories->registerCategory($request->all());
-            
-        return redirect('/admin');
+        return redirect()->route('show_category', $category->id);
+    }
+
+    public function show($id)
+    {
+        $category = Category::find($id);
+        return view('category.show',compact('category'));
     }
 }

@@ -26,17 +26,12 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return view('admin');
-    // }
-
     public function index()
     {
-        // $admins = Admin::where('published', true)->paginate(20);
-        return view('auth.register-admin.index');
+        $admins = Admin::all();
+        return view('auth.register-admin.index',compact('admins'));
     }
-//register admins
+
     public function create()
     {
         $roles = Role::orderBy('name')->pluck('name','id');
@@ -44,16 +39,6 @@ class AdminController extends Controller
         return view('auth.register-admin.create',compact('roles'));
         // return view('auth.register-admin.create');
     }
-
-    // public function store(Request $request)
-    // {
-    //     // $data = $request->only('title','body');
-    //     // $data['slug'] = str_slug($data['title']);
-    //     // $data['user_id'] = auth()->user()->id;
-    //     // $post = Post::create($data);
-
-    //     return redirect()->route('edit_admin',['id'=>$admin->id]);
-    // } 
     
     public function store(Request $request)
     {
@@ -66,14 +51,14 @@ class AdminController extends Controller
             
             $admin = $this->admins->register($request->all());
             
-        return redirect('/admin');
+        return redirect()->route('show_admin', $admin->id);
     }
 
 
-       public function show($id)
+    public function show($id)
     {
-        $post = Post::where('viewed',true)->findOrFails($id);
-        return view('auth.register-admin.show',compact('admins'));
+        $admin = Admin::find($id);
+        return view('auth.register-admin.show',compact('admin'));
     }
 
  
@@ -91,17 +76,17 @@ class AdminController extends Controller
         return back();
     }
 
-    public function list()
-    {
-        // $draftsQuery = Post::where('viewed',false);
+    // public function list()
+    // {
+    //     // $draftsQuery = Post::where('viewed',false);
 
-        // if(Gate::denies('see-all-drafts')){
-            // $draftsQuery = $draftsQuery->where('user_id',auth()->user()->id);
-        // }
-        // $posts = $draftsQuery->get();
+    //     // if(Gate::denies('see-all-drafts')){
+    //         // $draftsQuery = $draftsQuery->where('user_id',auth()->user()->id);
+    //     // }
+    //     // $posts = $draftsQuery->get();
 
-        return view('auth.register-admin.list',compact('admins'));
-    }
+    //     return view('auth.register-admin.list',compact('admins'));
+    // }
 
     public function publish(Admin $admin)
     {

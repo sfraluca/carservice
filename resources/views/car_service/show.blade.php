@@ -6,10 +6,15 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-               show car service
+              
+        
+                <div>
+                {{ $services->title }}
                 </div>
-
-                
+                </div>
+                {{ $services->price }}
+                {{ $services->description }}
+                {{ $services->service_date }}
 
                   </div>
             </div>

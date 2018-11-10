@@ -43,7 +43,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required>
+                                <input id="description" type="textarea" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required>
 
                                 @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
@@ -54,54 +54,54 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">Service Date</label>
+                            <label for="service_date" class="col-md-4 col-form-label text-md-right">Service Date</label>
 
                             <div class="col-md-6">
-                                <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" required>
+                                <input id="service_date" type="date" class="form-control{{ $errors->has('service_date') ? ' is-invalid' : '' }}" name="service_date" required>
 
-                                @if ($errors->has('date'))
+                                @if ($errors->has('service_date'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('date') }}</strong>
+                                        <strong>{{ $errors->first('service_date') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('car') ? ' has-error' : '' }}">
-                            <label for="car" class="col-md-4 control-label">Car</label>
+                        <div class="form-group{{ $errors->has('car_id') ? ' has-error' : '' }}">
+                            <label for="car_id" class="col-md-4 control-label">Car</label>
 
                             <div class="col-md-6">
-                                <select id="car" type="text" class="form-control" name="car" value="{{ old('car') }}" required >
+                                <select id="car_id" type="text" class="form-control" name="car_id" value="{{ old('car_id') }}" required >
                                   
-                                    @foreach($cars as $id=>$car)
-                                        <option value="{{$id}}">{{$car}}</option>
+                                    @foreach($cars as $id=>$car_id)
+                                        <option value="{{$id}}">{{$car_id}}</option>
 
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('car'))
+                                @if ($errors->has('car_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('car') }}</strong>
+                                        <strong>{{ $errors->first('car_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('product') ? ' has-error' : '' }}">
-                            <label for="product" class="col-md-4 control-label">Product</label>
+                        <div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }}">
+                            <label for="product_id" class="col-md-4 control-label">Product</label>
 
                             <div class="col-md-6">
-                                <select id="product" type="text" class="form-control" name="product" value="{{ old('product') }}" required >
+                                <select id="product_id" type="text" class="form-control" name="product_id" value="{{ old('product_id') }}" required >
                                   
-                                    @foreach($products as $id=>$product)
-                                        <option value="{{$id}}">{{$product}}</option>
+                                    @foreach($products as $id=>$product_id)
+                                        <option value="{{$id}}">{{$product_id}}</option>
 
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('product'))
+                                @if ($errors->has('product_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('product') }}</strong>
+                                        <strong>{{ $errors->first('product_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -6,11 +6,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-               index product
+                All products
                 </div>
+@foreach ($products as $product)
+{{ $product->description }}
 
-                
-
+                {{ $product->price }}
+                <br>
+@endforeach
                   </div>
             </div>
         </div>

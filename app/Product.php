@@ -12,11 +12,11 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsToMany(Category::class);
+         return $this->belongsTo(Category::class);
     }
-
-    public function car_service()
+    
+    public function services()
     {
-        return $this->belongsToMany(CarService::class);
+         return $this->hasOne(CarService::class); 
     }
 }

@@ -9,9 +9,9 @@ class RegisterCategory
 
     public function registerCategory($params)
     {
-        // $carservice = CarService::create([
-        //     'title' => $params['title'],
-        // ]);
+        $category = Category::create([
+            'title' => $params['title'],
+        ]);
       
         return $category;
     }
