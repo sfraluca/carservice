@@ -47,7 +47,7 @@ Route::group(['prefix'=>'admins'], function(){
 
 
     //to checked
-    Route::get('/list', 'AdminController@list')
+    Route::get('/list', 'AdminController@index')
         ->name('list_all_admins');
         // ->middleware('auth');
 
@@ -59,9 +59,6 @@ Route::group(['prefix'=>'admins'], function(){
         ->name('store_admin');
        // ->middleware('can:create-admin');
 
-
-       //to create and checked 
-        
     Route::get('/show/{id}', 'AdminController@show')
         ->name('show_admin');
 
@@ -92,6 +89,9 @@ Route::group(['prefix'=>'admins'], function(){
     ->name('store_car');
     //->middleware('can:create-car');
 
+    Route::get('/cars/show/{id}', 'CarController@show')
+        ->name('show_car');
+
 //CAR SERVICE
 
     //to checked
@@ -106,6 +106,9 @@ Route::group(['prefix'=>'admins'], function(){
     Route::post('/car/service/create', 'CarServiceController@store')
     ->name('store_car_service');
     //->middleware('can:create-car');
+
+    Route::get('/service/show/{id}', 'CarServiceController@show')
+        ->name('show_car_service');
 
 //Product
 
@@ -122,6 +125,10 @@ Route::post('/product/create', 'ProductController@store')
 ->name('store_product');
 //->middleware('can:create-car');
 
+Route::get('/product/show/{id}', 'ProductController@show')
+->name('show_product');
+
+
 //Category
 
 //to checked
@@ -136,6 +143,9 @@ Route::get('/category/create', 'CategoryController@create')
 Route::post('/category/create', 'CategoryController@store')
 ->name('store_category');
 //->middleware('can:create-car');
+
+Route::get('/category/show/{id}', 'CategoryController@show')
+->name('show_category');
 
 //Image
 

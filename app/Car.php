@@ -16,9 +16,9 @@ class Car extends Model
         'plate_number', 'brand', 'model', 'year', 'color', 'KW','CP','car_body','motor'
     ];
 
-    public function carService()
+    public function services()
     {
-         return $this->hasOne(CarService::class); 
+         return $this->hasMany(CarService::class); 
     }
 
     // public function car_service()

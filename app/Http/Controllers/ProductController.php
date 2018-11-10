@@ -15,15 +15,16 @@ class ProductController extends Controller
      *
      * @return void
      */
-    public function __construct(RegisterProduct $products)
+    public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->products = $products;
+        // $this->products = $products;
     }
 
     public function index()
     {
-        return view('product.index');
+        $products = Product::all();
+        return view('product.index', compact('products'));
     }
 
     public function create()
@@ -50,7 +51,14 @@ class ProductController extends Controller
         $products->category_id = $request->category_id;
 
         $products->save();
-                    
-        return redirect('/admin');
+
+        return redirect()->route('show_product', $products->id);   
+    }
+
+    public function show($id)
+    {
+        $products = Product::find($id);
+        
+        return view('product.show',compact('products'));
     }
 }

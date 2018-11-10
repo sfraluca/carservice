@@ -12,7 +12,7 @@ class CarService extends Model
 
     public function cars()
     {
-         return $this->belongsTo(Car::class);
+         return $this->belongsTo('App\Car');
     }
 
     public function products()

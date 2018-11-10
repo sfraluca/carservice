@@ -23,7 +23,8 @@ class CarController extends Controller
 
     public function index()
     {
-        return view('cars.index');
+        $cars = Car::all();
+        return view('cars.index',compact('cars'));
     }
 
     public function create()
@@ -48,7 +49,13 @@ class CarController extends Controller
             ]); 
            
         $car = $this->cars->registerCar($request->all());
-        
-        return redirect('/admin');
+
+        return redirect()->route('show_car', $car->id);
+    }
+
+    public function show($id)
+    {
+        $car = Car::find($id);
+        return view('cars.show',compact('car'));
     }
 }

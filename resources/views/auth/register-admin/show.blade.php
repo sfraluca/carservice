@@ -6,11 +6,12 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                Show
+                <h1>{{ $admin->name }}</h1>
                 </div>
-
-                
-
+                {{ $admin->email }}
+                  </div>
+                  </div>
+                {{ $admin->job_title }}
                   </div>
             </div>
         </div>

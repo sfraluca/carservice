@@ -26,7 +26,8 @@ class CarServiceController extends Controller
 
     public function index()
     {
-        return view('car_service.index');
+        $services = CarService::all();
+        return view('car_service.index', compact('services'));
     }
 
     public function create()
@@ -61,6 +62,13 @@ class CarServiceController extends Controller
     
             $services->save();
             
-        return redirect('/admin');
+            return redirect()->route('show_car_service', $services->id);
+    }
+
+    public function show($id)
+    {
+        $services = CarService::find($id);
+        
+        return view('car_service.show', compact('services'));
     }
 }

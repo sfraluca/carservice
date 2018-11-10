@@ -6,10 +6,16 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-               index car service
+                All services
                 </div>
-
+@foreach ($services as $service)
+{{ $service->title }}
                 
+                {{ $service->price }}
+                {{ $service->description }}
+                {{ $service->service_date }}
+                <br>
+@endforeach
 
                   </div>
             </div>

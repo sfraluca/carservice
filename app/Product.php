@@ -15,7 +15,7 @@ class Product extends Model
          return $this->belongsTo(Category::class);
     }
     
-    public function carService()
+    public function services()
     {
          return $this->hasOne(CarService::class); 
     }

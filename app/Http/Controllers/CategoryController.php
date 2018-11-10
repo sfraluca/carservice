@@ -23,7 +23,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('category.index');
+        $categories = Category::all();
+        return view('category.index',compact('categories'));
     }
 
     public function create()
@@ -40,6 +41,12 @@ class CategoryController extends Controller
           
         $category = $this->category->registerCategory($request->all());
             
-        return redirect('/admin');
+        return redirect()->route('show_category', $category->id);
+    }
+
+    public function show($id)
+    {
+        $category = Category::find($id);
+        return view('category.show',compact('category'));
     }
 }
