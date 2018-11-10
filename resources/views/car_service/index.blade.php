@@ -14,7 +14,13 @@
                 {{ $service->price }}
                 {{ $service->description }}
                 {{ $service->service_date }}
+                <form method="POST" class="delete_form" action ="{{ route('delete_service', $service->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
                 <br>
+
 @endforeach
 
                   </div>

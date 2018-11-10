@@ -44,9 +44,6 @@ Route::group(['prefix'=>'admins'], function(){
 
 //ADMIN
 
-
-
-    //to checked
     Route::get('/list', 'AdminController@index')
         ->name('list_all_admins');
         // ->middleware('auth');
@@ -62,21 +59,20 @@ Route::group(['prefix'=>'admins'], function(){
     Route::get('/show/{id}', 'AdminController@show')
         ->name('show_admin');
 
-    Route::get('/edit/{admin}', 'AdminController@edit')
-        ->name('edit_admin')
-        ->middleware('can:update-admin,admin');
+    Route::get('/edit/{id}', 'AdminController@edit')
+        ->name('edit_admin');
+      //  ->middleware('can:update-admin,admin');
         
-    Route::post('/edit/{admin}', 'AdminController@update')
-        ->name('update_admin')
-        ->middleware('can:update-admin,admin');
+    Route::post('/edit/{id}', 'AdminController@update')
+        ->name('update_admin');
+       // ->middleware('can:update-admin,admin');
+    Route::delete('/destroy/{id}', 'AdminController@destroy')
+       ->name('delete_admin');
 
-    Route::get('/publish/{admin}', 'AdminController@publish')
-        ->name('publish_admin')
-        ->middleware('can:publish-admin');
 
 //CARS
 
-        //to checked
+    
     Route::get('/cars/list', 'CarController@index')
     ->name('list_all_cars');
     // ->middleware('auth');
@@ -92,9 +88,18 @@ Route::group(['prefix'=>'admins'], function(){
     Route::get('/cars/show/{id}', 'CarController@show')
         ->name('show_car');
 
+    Route::get('/cars/edit/{id}', 'CarController@edit')
+        ->name('edit_car');
+
+    Route::post('/cars/edit/{id}', 'CarController@update')
+        ->name('update_car');
+
+    Route::delete('/cars/destroy/{id}', 'CarController@destroy')
+        ->name('delete_car');
+
+
 //CAR SERVICE
 
-    //to checked
     Route::get('/car/service/list', 'CarServiceController@index')
     ->name('list_all_car_service');
     // ->middleware('auth');
@@ -110,11 +115,21 @@ Route::group(['prefix'=>'admins'], function(){
     Route::get('/service/show/{id}', 'CarServiceController@show')
         ->name('show_car_service');
 
+    Route::get('/service/edit/{id}', 'CarServiceController@edit')
+        ->name('edit_service');
+
+    Route::post('/service/edit/{id}', 'CarServiceController@update')
+        ->name('update_service');
+
+    Route::delete('/service/destroy/{id}', 'CarServiceController@destroy')
+       ->name('delete_service');
+
+
 //Product
 
 //to checked
 Route::get('/product/list', 'ProductController@index')
-->name('list_all_product');
+->name('list_all_products');
 // ->middleware('auth');
 
 Route::get('/product/create', 'ProductController@create')
@@ -127,6 +142,15 @@ Route::post('/product/create', 'ProductController@store')
 
 Route::get('/product/show/{id}', 'ProductController@show')
 ->name('show_product');
+
+Route::get('/product/edit/{id}', 'ProductController@edit')
+        ->name('edit_product');
+
+Route::post('/product/edit/{id}', 'ProductController@update')
+        ->name('update_product');
+
+Route::delete('/product/destroy/{id}', 'ProductController@destroy')
+       ->name('delete_product');
 
 
 //Category
@@ -146,6 +170,15 @@ Route::post('/category/create', 'CategoryController@store')
 
 Route::get('/category/show/{id}', 'CategoryController@show')
 ->name('show_category');
+
+Route::get('/category/edit/{id}', 'CategoryController@edit')
+        ->name('edit_category');
+
+Route::post('/category/edit/{id}', 'CategoryController@update')
+        ->name('update_category');
+
+Route::delete('/category/destroy/{id}', 'CategoryController@destroy')
+       ->name('delete_category');
 
 //Image
 

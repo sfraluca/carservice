@@ -10,6 +10,11 @@
                 </div>
 @foreach ($categories as $category)
 {{ $category->title }}
+<form method="POST" class="delete_form" action ="{{ route('delete_category', $category->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
 <br>
 @endforeach
 

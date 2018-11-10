@@ -14,7 +14,11 @@ Product
                 </div>
                 </div>
                 {{ $products->price }}
-               
+                <form method="POST" class="delete_form" action ="{{ route('delete_product', $products->id)}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type='submit'> Delete</button>
+                </form>
 
                   </div>
             </div>

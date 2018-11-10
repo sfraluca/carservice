@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Role;
+use Illuminate\Support\Facades\Hash;
 use App\Entities\RegisterAdmin;
 
 class AdminController extends Controller
@@ -63,35 +64,43 @@ class AdminController extends Controller
 
  
 
-    public function edit(Admin $admin)
+    public function edit($id)
     {
-        return view('auth.register-admin.edit',compact('admin'));
+        $roles = Role::orderBy('name')->pluck('name','id');
+        $admins = Admin::find($id);
+        return view('auth.register-admin.edit',compact('admins', 'roles'));   
     }
 
-    public function update(Admin $admin, Request $request)
+    public function update(Request $request, $id)
     {
-        // $data = $request->only('title','body');
-        // $data['slug'] = str_slug($data['title']);
-        // $post = fill($data)->save();
-        return back();
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'job_title' => 'required',
+            'role' => 'required'
+            ]); 
+
+        $admin = Admin::find($id);
+        
+
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password = Hash::make($request->input('password'));
+        $admin->job_title = $request->input('job_title');
+
+        $admin->save();
+
+        return redirect()->route('show_admin', $admin->id);
     }
 
-    // public function list()
-    // {
-    //     // $draftsQuery = Post::where('viewed',false);
-
-    //     // if(Gate::denies('see-all-drafts')){
-    //         // $draftsQuery = $draftsQuery->where('user_id',auth()->user()->id);
-    //     // }
-    //     // $posts = $draftsQuery->get();
-
-    //     return view('auth.register-admin.list',compact('admins'));
-    // }
-
-    public function publish(Admin $admin)
+    public function destroy($id)
     {
-       $admin->viewed = true;
-       $admin->save();
-       return back();
+        $admin = Admin::find($id);
+        $admin->delete();
+
+        return redirect()->route('list_all_admins');
     }
+
+    
 }
