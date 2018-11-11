@@ -103,7 +103,7 @@ class CarServiceController extends Controller
 
         $services->save();
 
-        return redirect()->route('show_service', $services->id);
+        return redirect()->route('show_car_service', $services->id);
     }
 
     public function destroy($id)

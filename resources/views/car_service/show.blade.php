@@ -20,6 +20,10 @@
                 <input type="hidden" name="_method" value="DELETE"/>
                 <button type='submit'> Delete</button>
                 </form>
+                <form action ="{{ route('edit_service', $services->id)}}">
+                <input type="hidden"/>
+                <button type='submit'> Edit </button>
+                </form>
                   </div>
             </div>
         </div>

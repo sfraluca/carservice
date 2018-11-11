@@ -32,7 +32,8 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                        <button href ="{{ route('show_category', $category->id)}}"> Cancel </button>
+</form>
                 </div>
             </div>
         </div>

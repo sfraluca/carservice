@@ -142,6 +142,8 @@
                                 </button>
                             </div>
                         </div>
+                        <button href ="{{ route('show_car', $car->id)}}"> Cancel </button>
+
                 </form>
                   </div>
             </div>

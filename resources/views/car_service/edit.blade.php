@@ -114,6 +114,7 @@
                                 </button>
                             </div>
                         </div>
+                        <button href ="{{ route('show_car_service', $services->id)}}"> Cancel </button>
                     </form>
                 </div>
             </div>
