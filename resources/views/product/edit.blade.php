@@ -67,6 +67,8 @@
                                 </button>
                             </div>
                         </div>
+                        <button href ="{{ route('show_product', $products->id)}}"> Cancel </button>
+
                     </form>
                 </div>
             </div>

@@ -102,6 +102,9 @@
                                 </button>
                             </div>
                         </div>
+                        
+                <button href ="{{ route('show_admin', $admins->id)}}"> Cancel </button>
+                
                     </form>
                 </div>
             </div>

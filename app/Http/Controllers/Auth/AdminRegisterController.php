@@ -67,7 +67,7 @@ class AdminRegisterController extends Controller
             
             $admin = $this->admins->register($request->all());
             
-        return redirect('/admin');
+            return redirect()->route('dashboard');
     }
 
    

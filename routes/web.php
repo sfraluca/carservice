@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin'], function(){
 
 });
 
-Route::get('/admins','AdminController@index')->name('list_admins');
+Route::get('/admin','AdminController@dashboard')->name('dashboard');
 
 Route::group(['prefix'=>'admins'], function(){
 
