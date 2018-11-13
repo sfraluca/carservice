@@ -21,6 +21,34 @@ class CarController extends Controller
         $this->middleware('auth:admin');
         $this->cars = $cars;
     }
+    //form for upload
+    public function dashboard()
+    {
+        return view('auth.admin.dashboard');
+    }
+    //save in db
+    public function storeImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required',
+            ]);
+            
+        $car = $this->cars->upload($request->all());
+        return redirect()->route('check', $car->id);
+
+        //return redirect()->route('show_car', $car->id);
+        //redirect
+        //return view('auth.admin.dashboard');
+    }
+    //api
+    public function check($ImageId)
+    {
+
+        //check plate number
+       //$car = Car::find($id);
+       return redirect()->route('show_car', $car->id);
+    }
+
 
     public function index()
     {

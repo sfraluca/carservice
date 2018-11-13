@@ -3,7 +3,8 @@
 namespace App\Entities;
 
 use App\Car;
-
+use App\Image;
+use Illuminate\Support\Facades\Hash;
 class RegisterCar
 {
 
@@ -22,5 +23,14 @@ class RegisterCar
         ]);
         
         return $car;
+    }
+
+    public function upload($params)
+    {
+        $image = Image::create([
+            'image' => Hash::make($params['image']),
+        ]);
+        
+        return $image;
     }
 }

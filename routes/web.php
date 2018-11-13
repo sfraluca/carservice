@@ -37,7 +37,9 @@ Route::group(['prefix'=>'admin'], function(){
 
 });
 
-Route::get('/admin','AdminController@dashboard')->name('dashboard');
+Route::get('/admin','CarController@dashboard')->name('dashboard');
+Route::post('/admin','CarController@storeImage')->name('store_image');
+Route::get('/check/{ImageId}','CarController@check')->name('check');
 
 Route::group(['prefix'=>'admins'], function(){
 
