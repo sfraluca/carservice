@@ -3,10 +3,15 @@
 namespace App\Entities;
 
 use App\Car;
-
+use App\Image;
+use Illuminate\Support\Facades\Hash;
 class RegisterCar
 {
-
+    protected $image;
+    public function __construct()
+    {
+        $this->image = app(Image::class);
+    }
     public function registerCar($params)
     {
         $car = Car::create([
@@ -23,4 +28,7 @@ class RegisterCar
         
         return $car;
     }
+
+    
+
 }

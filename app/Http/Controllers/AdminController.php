@@ -33,11 +33,7 @@ class AdminController extends Controller
         return view('auth.register-admin.index',compact('admins'));
     }
 
-    public function dashboard()
-    {
-        return view('auth.admin.dashboard');
-    }
-
+    
     public function create()
     {
         $roles = Role::orderBy('name')->pluck('name','id');
