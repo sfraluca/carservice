@@ -256,7 +256,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="{{ route('store_image') }}">
+      <form method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
                         @csrf
       <div class="modal-body">
         Description.... <div>
@@ -264,8 +264,8 @@
             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
 
             <div class="col-md-6">
-            <input id="image" name="image" type="file" class="file form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" data-browse-on-zone-click="true">
-            <!-- <input id="name" type="text" class="" name="name" value="{{ old('name') }}" required autofocus> -->
+            <input id="image" name="image" type="file" data-browse-on-zone-click="true">
+        
 
                 @if ($errors->has('image'))
                     <span class="invalid-feedback" role="alert">
@@ -279,7 +279,7 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" value="Upload" name="submit" class="btn btn-primary">Save changes</button>
       </div>
       </form>
     </div>
