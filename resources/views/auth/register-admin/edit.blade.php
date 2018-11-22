@@ -2,114 +2,131 @@
 
 @section('content')
 @include('layouts.navbar')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Admin Update Account') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('update_admin', $admins->id) }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $admins->name }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="job_title" class="col-md-4 col-form-label text-md-right">{{ __('Job_title') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="job_title" type="text" class="form-control{{ $errors->has('job_title') ? ' is-invalid' : '' }}" name="job_title" value="{{ $admins->job_title }}" required autofocus>
-
-                                @if ($errors->has('job_title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('job_title') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $admins->email }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"  required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <select id="name" type="text" class="form-control" name="role" value="{{ $admins->role }}" required >
-                                  
-                                    @foreach($roles as $id=>$role)
-                                        <option value="{{$id}}">{{$role}}</option>
-
-                                    @endforeach
-                                </select>
-
-                                @if ($errors->has('role'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                        
-                <button href ="{{ route('show_admin', $admins->id)}}"> Cancel </button>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+    @include('layouts.sidebar')
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>                 
+                </span>
+                Edit current admin
+                </h3>
+                <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview
+                    <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                </ul>
+                </nav>
+            </div>
                 
-                    </form>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">   
+                        <h4 class="card-title">Admin Create Account</h4>  
+                        <form class="forms-sample" method="POST" action="{{ route('update_admin', $admins->id) }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input  id="name"
+                                        type="text" 
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                                        name="name" 
+                                        value="{{ $admins->name }}" 
+                                        required autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="job_title">Job_title</label>
+                                <input  id="job_title" 
+                                        type="text" 
+                                        class="form-control{{ $errors->has('job_title') ? ' is-invalid' : '' }}" 
+                                        name="job_title" 
+                                        value="{{ $admins->job_title }}" 
+                                        required autofocus>
+                                    @if ($errors->has('job_title'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('job_title') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-Mail Address</label>
+                                <input  id="email" 
+                                        type="email" 
+                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
+                                        name="email" 
+                                        value="{{ $admins->email }}" 
+                                        required>
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input  id="password" 
+                                        type="password" 
+                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" 
+                                        name="password">
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password-confirm">Confirm Password</label>
+                                <input id="password-confirm" 
+                                        type="password" 
+                                        class="form-control" 
+                                        name="password_confirmation">
+                            </div>
+
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                                <label for="name">Name</label>
+                                    <select id="name" 
+                                            type="text" 
+                                            class="form-control" 
+                                            name="role" 
+                                            value="{{ $admins->role }}" 
+                                            required >
+                                        
+                                        @foreach($roles as $id=>$role)
+                                            <option value="{{$id}}">{{$role}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @if ($errors->has('role'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('role') }}</strong>
+                                        </span>
+                                    @endif
+                            
+                            </div>
+
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button class="btn btn-light" href ="{{ route('show_admin', $admins->id)}}">Cancel</button>        
+                    
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection
