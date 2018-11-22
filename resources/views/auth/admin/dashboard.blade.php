@@ -2,159 +2,12 @@
 
 @section('content')
 @include('layouts.navbar')
+
  <div class="container-scroller">
-    
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-image">
-                <img src="images/faces/face1.jpg" alt="profile">
-                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
-              </div>
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">{{ Auth::user()->name }} </span>
-                <span class="text-secondary text-small">{{ Auth::user()->job_title }}</span>
-              </div>
-              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-              <span class="menu-title">Dashboard</span>
-              <i class="mdi mdi-home menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Admins</span>
-              <!-- <i class="menu-arrow"></i> -->
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_admins') }}">Admins list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_admin') }}">Add admin</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Cars</span>
-              <!-- <i class="menu-arrow"></i> -->
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_cars') }}">Cars list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_car') }}">Add car</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Service</span>
-              <!-- <i class="menu-arrow"></i> -->
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_car_service') }}">Service list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_car_service') }}">Add service</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Product</span>
-              <!-- <i class="menu-arrow"></i> -->
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_products') }}">Product list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_product') }}">Add product</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Category</span>
-              <!-- <i class="menu-arrow"></i> -->
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_category') }}">Category list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_category') }}">Add product</a></li>
-              </ul>
-            </div>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-              <span class="menu-title">Icons</span>
-              <i class="mdi mdi-contacts menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">Forms</span>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <span class="menu-title">Charts</span>
-              <i class="mdi mdi-chart-bar menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-              <span class="menu-title">Tables</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-              <span class="menu-title">Sample Pages</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-medical-bag menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-              </div>
-          </li>
-          <li class="nav-item sidebar-actions">
-            <span class="nav-link">
-              <div class="border-bottom">
-                <h6 class="font-weight-normal mb-3">Projects</h6>                
-              </div>
-              <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-              <div class="mt-4">
-                <div class="border-bottom">
-                  <p class="text-secondary">Categories</p>                  
-                </div>
-                <ul class="gradient-bullet-list mt-4">
-                  <li>Free</li>
-                  <li>Pro</li>
-                </ul>
-              </div>
-            </span>
-          </li> -->
-        </ul>
-      </nav>
+      @include('layouts.sidebar')
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -179,7 +32,7 @@
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
-                  <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                  <img src="/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
                   <h4 class="font-weight-normal mb-3">Weekly Sales
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                   </h4>
@@ -191,7 +44,7 @@
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
-                  <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
+                  <img src="/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
                   <h4 class="font-weight-normal mb-3">Weekly Orders
                     <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                   </h4>
@@ -203,7 +56,7 @@
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
-                  <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+                  <img src="/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
                   <h4 class="font-weight-normal mb-3">Visitors Online
                     <i class="mdi mdi-diamond mdi-24px float-right"></i>
                   </h4>
@@ -242,49 +95,49 @@
                   <h4 class="card-title">Recognize plate number by image</h4>
                   <div class="table-responsive">
                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" data-toggle="modal" data-target="#exampleModal">
-  See info
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" data-toggle="modal" data-target="#exampleModal">
+        See info
         </button>
-      </div>
-      <form method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
-                        @csrf
-      <div class="modal-body">
-        Description.... <div>
-        <div class="form-group row">
-            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
 
-            <div class="col-md-6">
-            <input id="image" name="image" type="file" data-browse-on-zone-click="true">
-        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
+                                @csrf
+            <div class="modal-body">
+                Description.... <div>
+                <div class="form-group row">
+                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
 
-                @if ($errors->has('image'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('image') }}</strong>
-                    </span>
-                @endif
+                    <div class="col-md-6">
+                    <input id="image" name="image" type="file" data-browse-on-zone-click="true">
+                
+
+                        @if ($errors->has('image'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('image') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                
+            </div></div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" value="Upload" name="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
             </div>
         </div>
-        
-      </div></div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" value="Upload" name="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+        </div>
                   </div>
                 </div>
               </div>
@@ -319,7 +172,7 @@
                       <tbody>
                         <tr>
                           <td>
-                            <img src="images/faces/face1.jpg" class="mr-2" alt="image">
+                            <img src="/images/faces/face1.jpg" class="mr-2" alt="image">
                             David Grey
                           </td>
                           <td>
@@ -337,7 +190,7 @@
                         </tr>
                         <tr>
                           <td>
-                            <img src="images/faces/face2.jpg" class="mr-2" alt="image">
+                            <img src="/images/faces/face2.jpg" class="mr-2" alt="image">
                             Stella Johnson
                           </td>
                           <td>
@@ -355,7 +208,7 @@
                         </tr>
                         <tr>
                           <td>
-                            <img src="images/faces/face3.jpg" class="mr-2" alt="image">
+                            <img src="/images/faces/face3.jpg" class="mr-2" alt="image">
                             Marina Michel
                           </td>
                           <td>
@@ -373,7 +226,7 @@
                         </tr>
                         <tr>
                           <td>
-                            <img src="images/faces/face4.jpg" class="mr-2" alt="image">
+                            <img src="/images/faces/face4.jpg" class="mr-2" alt="image">
                             John Doe
                           </td>
                           <td>
@@ -413,16 +266,16 @@
                   </div>
                   <div class="row mt-3">
                     <div class="col-6 pr-1">
-                      <img src="images/dashboard/img_1.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
+                      <img src="/images/dashboard/img_1.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
                       <img src="images/dashboard/img_4.jpg" class="mw-100 w-100 rounded" alt="image">
                     </div>
                     <div class="col-6 pl-1">
-                      <img src="images/dashboard/img_2.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
-                      <img src="images/dashboard/img_3.jpg" class="mw-100 w-100 rounded" alt="image">
+                      <img src="/images/dashboard/img_2.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
+                      <img src="/images/dashboard/img_3.jpg" class="mw-100 w-100 rounded" alt="image">
                     </div>
                   </div>
                   <div class="d-flex mt-5 align-items-top">
-                    <img src="images/faces/face3.jpg" class="img-sm rounded-circle mr-3" alt="image">
+                    <img src="/images/faces/face3.jpg" class="img-sm rounded-circle mr-3" alt="image">
                     <div class="mb-0 flex-grow">
                       <h5 class="mr-2 mb-2">School Website - Authentication Module.</h5>
                       <p class="mb-0 font-weight-light">It is a long established fact that a reader will be distracted by the readable
