@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\CarService;
 use App\Car;
 use App\Product;
-// use App\Entities\RegisterCarService;
 
 class CarServiceController extends Controller
 {
@@ -16,12 +15,12 @@ class CarServiceController extends Controller
      *
      * @return void
      */
-    // public function __construct(RegisterCarService $car_services)
+
     public function __construct()
 
     {
         $this->middleware('auth:admin');
-        // $this->car_services = $car_services;
+
     }
 
     public function index()
@@ -48,20 +47,20 @@ class CarServiceController extends Controller
             'service_date' => 'required',
             'car_id' => 'required',
             'product_id' => 'required'
-            ]);
+        ]);
             
-            $services = new CarService;
+        $services = new CarService;
 
-            $services->title = $request->title;
-            $services->price = $request->price;
-            $services->description = $request->description;
-            $services->service_date = $request->service_date;
-            $services->car_id = $request->car_id;
-            $services->product_id = $request->product_id;
-    
-            $services->save();
-            
-            return redirect()->route('show_car_service', $services->id);
+        $services->title = $request->title;
+        $services->price = $request->price;
+        $services->description = $request->description;
+        $services->service_date = $request->service_date;
+        $services->car_id = $request->car_id;
+        $services->product_id = $request->product_id;
+
+        $services->save();
+        
+        return redirect()->route('show_car_service', $services->id);
     }
 
     public function show($id)
