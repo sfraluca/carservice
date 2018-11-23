@@ -2,41 +2,59 @@
 
 @section('content')
 @include('layouts.navbar')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Add category</div>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+    @include('layouts.sidebar')
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Create new admin
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview
+                        <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Admin Create Account</h4>  
+                        <form class="forms-sample" method="POST" action="{{ route('store_category') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                    <input id="title" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
+                                            name="title" 
+                                            value="{{ old('title') }}"
+                                            required 
+                                            autofocus>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('store_category') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
-
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
-
-                                @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('title'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </span>
+                                    @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>  
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    
     </div>
 </div>
 @endsection
