@@ -109,26 +109,23 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
+            <form class="forms-sample" method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
                                 @csrf
             <div class="modal-body">
-                Description.... <div>
-                <div class="form-group row">
-                    <label for="image">{{ __('Upload Image') }}</label>
-
-                    <div class="col-md-6">
-                    <input id="image" name="image" type="file" data-browse-on-zone-click="true">
+                Description.... 
+                <div class="form-group">
+                    <input id="image" 
+                          name="image" 
+                          type="file" 
+                          data-browse-on-zone-click="true">
                 
-
                         @if ($errors->has('image'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('image') }}</strong>
                             </span>
                         @endif
-                    </div>
                 </div>
-                
-            </div></div>
+            </div>
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

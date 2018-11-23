@@ -40,28 +40,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($services as $service)
                                     <tr>
-                                        <td>{{ $service->id }}</td>
-                                        <td>{{ $service->title }}</td>
-                                        <td>{{ $service->price }}</td>
-                                        <td>{{ $service->description }}</td>
-                                        <td>{{ $service->service_date }}</td>
+                                        <td>{{ $services->id }}</td>
+                                        <td>{{ $services->title }}</td>
+                                        <td>{{ $services->price }}</td>
+                                        <td>{{ $services->description }}</td>
+                                        <td>{{ $services->service_date }}</td>
                                         <td>
-                                            <form action ="{{ route('edit_service', $service->id)}}">
+                                            <form action ="{{ route('edit_service', $services->id)}}">
                                                 <input type="hidden"/>
                                                 <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form method="POST" class="delete_form" action ="{{ route('delete_service', $service->id)}}">
+                                            <form method="POST" class="delete_form" action ="{{ route('delete_service', $services->id)}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
                                                 <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                             </form> 
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
                             </table>       
                         </div>
