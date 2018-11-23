@@ -12,7 +12,7 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-home"></i>                 
                 </span>
-                Edit current admin
+                Edit current product
                 </h3>
                 <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -27,76 +27,76 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">   
-                        <h4 class="card-title">Admin Create Account</h4>  
+                        <h4 class="card-title">Product Edit</h4>  
                         <form class="forms-sample" method="POST" action="{{ route('update_product', $products->id) }}">
-                        @csrf
+                            @csrf
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                    <input id="description" 
+                                            type="textarea" 
+                                            class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
+                                            name="description" 
+                                            value="{{ $products->description }}" 
+                                            required 
+                                            autofocus>
 
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                                <input id="description" 
-                                type="textarea" 
-                                class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
-                                name="description" 
-                                value="{{ $products->description }}" 
-                                required 
-                                autofocus>
+                                    @if ($errors->has('description'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
 
-                                @if ($errors->has('description'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                        </div>
+                            <div class="form-group ">
+                                <label for="price">Price</label>
+                                    <input id="price" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
+                                            name="price" 
+                                            value="{{ $products->price }}" 
+                                            required 
+                                            autofocus>
 
-                        <div class="form-group ">
-                            <label for="price">Price</label>
-                                <input id="price" 
-                                type="text" 
-                                class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
-                                 name="price" 
-                                 value="{{ $products->price }}" 
-                                 required 
-                                 autofocus>
+                                    @if ($errors->has('price'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('price') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
 
-                                @if ($errors->has('price'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('price') }}</strong>
-                                    </span>
-                                @endif
-                        </div>
+                            
+                            <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                                <label for="category_id">Category</label>
+                                    <select id="category_id" 
+                                            type="text" 
+                                            class="form-control" 
+                                            name="category_id" 
+                                            value="{{ $products->category_id}}" 
+                                            required >
+                                    
+                                        @foreach($categories as $id=>$category_id)
+                                            <option value="{{$id}}">{{$category_id}}</option>
 
-                        
-                        <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                            <label for="category_id">Category</label>
-                                <select id="category_id" 
-                                type="text" 
-                                class="form-control" 
-                                name="category_id" 
-                                value="{{ $products->category_id}}" 
-                                required >
-                                  
-                                    @foreach($categories as $id=>$category_id)
-                                        <option value="{{$id}}">{{$category_id}}</option>
+                                        @endforeach
+                                    </select>
 
-                                    @endforeach
-                                </select>
+                                    @if ($errors->has('category_id'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('category_id') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
 
-                                @if ($errors->has('category_id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('category_id') }}</strong>
-                                    </span>
-                                @endif
-                        </div>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button class="btn btn-light" href ="{{ route('show_product', $products->id)}}"> Cancel </button>
 
-                        <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                        <button class="btn btn-light" href ="{{ route('show_product', $products->id)}}"> Cancel </button>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+    
+    </div>
 </div>
 @endsection

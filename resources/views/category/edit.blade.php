@@ -12,7 +12,7 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-home"></i>                 
                 </span>
-                Edit current admin
+                Edit current category
                 </h3>
                 <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -27,35 +27,36 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">   
-                        <h4 class="card-title">Admin Create Account</h4>  
+                        <h4 class="card-title">Edit form category</h4>  
                         <form class="forms-sample" method="POST" action="{{ route('update_category', $category->id) }}">
                         @csrf
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                                <input id="title" 
-                                type="text" 
-                                class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
-                                name="title" 
-                                value="{{ $category->title }}" 
-                                required 
-                                autofocus>
+                            <input id="title" 
+                                    type="text" 
+                                    class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
+                                    name="title" 
+                                    value="{{ $category->title }}" 
+                                    required 
+                                    autofocus>
 
-                                @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
+                            @if ($errors->has('title'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
-                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                        <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                         <button class="btn btn-light" href ="{{ route('show_category', $category->id)}}"> Cancel </button>
-</form>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
+
+        </div>
 </div>
 @endsection
