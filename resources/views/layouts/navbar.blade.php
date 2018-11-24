@@ -15,6 +15,11 @@
           </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
+      
+       
+
+              
+
         @guest
         <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -42,14 +47,16 @@
                 Activity Log
               </a> -->
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                </form>
+              <a class="dropdown-item" href="{{ route('logout') }}" 
+                                onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
                 Signout
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                </form>
             </div>
           </li> 
           @endguest

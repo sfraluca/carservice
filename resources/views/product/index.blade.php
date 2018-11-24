@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
-                            <a href="{{ route('create_car_service') }}">Add product</a>
+                            <a href="{{ route('create_product') }}">Add product</a>
                         </button>   
                         <p>Create new product:</p>
                         <div class="table-responsive">
