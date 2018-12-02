@@ -43,7 +43,6 @@ Route::get('/check/{ImageId}','CarController@check')->name('check');
 
 Route::group(['prefix'=>'admins'], function(){
 
-
 //ADMIN
 
     Route::get('/list', 'AdminController@index')
@@ -51,26 +50,22 @@ Route::group(['prefix'=>'admins'], function(){
         ->middleware('auth:admin');
 
     Route::get('/create', 'AdminController@create')
-        ->name('create_admin')
-         ->middleware('can:create-admin');
+        ->name('create_admin');
 
     Route::post('/create', 'AdminController@store')
-        ->name('store_admin')
-        ->middleware('can:create-admin');
+        ->name('store_admin');
 
     Route::get('/show/{id}', 'AdminController@show')
         ->name('show_admin');
 
     Route::get('/edit/{id}', 'AdminController@edit')
         ->name('edit_admin');
-      //  ->middleware('can:update-admin,admin');
         
     Route::post('/edit/{id}', 'AdminController@update')
         ->name('update_admin');
-       // ->middleware('can:update-admin,admin');
+
     Route::delete('/destroy/{id}', 'AdminController@destroy')
        ->name('delete_admin');
-
 
 //CARS
 
@@ -79,28 +74,22 @@ Route::group(['prefix'=>'admins'], function(){
             ->middleware('auth:admin');
 
     Route::get('/cars/create', 'CarController@create')
-            ->name('create_car')
-            ->middleware('can:create-car');
+            ->name('create_car');
 
     Route::post('/cars/create', 'CarController@store')
-            ->name('store_car')
-            ->middleware('can:create-car');
+            ->name('store_car');
 
     Route::get('/cars/show/{id}', 'CarController@show')
             ->name('show_car');
 
     Route::get('/cars/edit/{id}', 'CarController@edit')
             ->name('edit_car');
-            // ->middleware('can:update-car,car');
 
     Route::post('/cars/edit/{id}', 'CarController@update')
         ->name('update_car');
-        // ->middleware('can:update-car,car');
 
     Route::delete('/cars/destroy/{id}', 'CarController@destroy')
             ->name('delete_car');
-            // ->middleware('can:delete-car');
-
 
 //CAR SERVICE
 
@@ -109,27 +98,22 @@ Route::group(['prefix'=>'admins'], function(){
             ->middleware('auth:admin');
 
     Route::get('/car/service/create', 'CarServiceController@create')
-            ->name('create_car_service')
-            ->middleware('can:create-car-service');
+            ->name('create_car_service');
 
     Route::post('/car/service/create', 'CarServiceController@store')
-            ->name('store_car_service')
-            ->middleware('can:create-car-service');
+            ->name('store_car_service');
 
     Route::get('/service/show/{id}', 'CarServiceController@show')
             ->name('show_car_service');
 
     Route::get('/service/edit/{id}', 'CarServiceController@edit')
-            ->name('edit_service')
-            ->middleware('can:update-car-service,carservice');
+            ->name('edit_service');
 
     Route::post('/service/edit/{id}', 'CarServiceController@update')
-            ->name('update_service')
-            ->middleware('can:update-car-service,carservice');
+            ->name('update_service');
 
     Route::delete('/service/destroy/{id}', 'CarServiceController@destroy')
-            ->name('delete_service')
-            ->middleware('can:delete-car-service');
+            ->name('delete_service');
 
     //Product
 
@@ -138,27 +122,22 @@ Route::group(['prefix'=>'admins'], function(){
         ->middleware('auth:admin');
 
     Route::get('/product/create', 'ProductController@create')
-            ->name('create_product')
-            ->middleware('can:create-product');
+            ->name('create_product');
 
     Route::post('/product/create', 'ProductController@store')
-            ->name('store_product')
-            ->middleware('can:create-product');
+            ->name('store_product');
 
     Route::get('/product/show/{id}', 'ProductController@show')
             ->name('show_product');
 
     Route::get('/product/edit/{id}', 'ProductController@edit')
-            ->name('edit_product')
-            ->middleware('can:update-product,product');
+            ->name('edit_product');
 
     Route::post('/product/edit/{id}', 'ProductController@update')
-            ->name('update_product')
-            ->middleware('can:update-product,product');
+            ->name('update_product');
 
     Route::delete('/product/destroy/{id}', 'ProductController@destroy')
-            ->name('delete_product')
-            ->middleware('can:delete-product');
+            ->name('delete_product');
 
 
     //Category
@@ -169,27 +148,22 @@ Route::group(['prefix'=>'admins'], function(){
         ->middleware('auth:admin');
 
     Route::get('/category/create', 'CategoryController@create')
-        ->name('create_category')
-        ->middleware('can:create-category');
+        ->name('create_category');
 
     Route::post('/category/create', 'CategoryController@store')
-            ->name('store_category')
-            ->middleware('can:create-category');
+            ->name('store_category');
 
     Route::get('/category/show/{id}', 'CategoryController@show')
             ->name('show_category');
 
     Route::get('/category/edit/{id}', 'CategoryController@edit')
-            ->name('edit_category')
-            ->middleware('can:update-category,category');
+            ->name('edit_category');
 
     Route::post('/category/edit/{id}', 'CategoryController@update')
-            ->name('update_category')
-            ->middleware('can:update-category,category');
+            ->name('update_category');
 
     Route::delete('/category/destroy/{id}', 'CategoryController@destroy')
-            ->name('delete_category')
-            ->middleware('can:delete-category');
+            ->name('delete_category');
 
     //Image
 

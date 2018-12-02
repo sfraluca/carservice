@@ -5,6 +5,7 @@ namespace App\Entities;
 use App\Car;
 use App\Image;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 class RegisterCar
 {
     protected $image;
@@ -16,7 +17,6 @@ class RegisterCar
     {
         $car = Car::create([
             'plate_number' => $params['plate_number'],
-            'roles_id' => Auth::roles()->id,
             'brand' => $params['brand'],
             'model' => $params['model'],
             'year' => $params['year'],
@@ -26,6 +26,7 @@ class RegisterCar
             'injection_type' => $params['injection_type'],
             'motor_code' => $params['motor_code'],
             'car_body' => $params['car_body'],
+            'user_id' => $params['user_id']
         ]);
         
         return $car;

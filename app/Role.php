@@ -8,6 +8,10 @@ class Role extends Model
 {
     protected $fillable = ['name','slug','permissions'];
 
+    protected $casts = [
+        'permissions' => 'array',
+    ];
+
     public function admins()
     {
         return $this->belongsToMany(Admin::class,'role_admins');

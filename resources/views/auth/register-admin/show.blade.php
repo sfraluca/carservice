@@ -31,7 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th> Name</th>
+                                        <th>Name</th>
                                         <th>Email</th>
                                         <th>Job</th>
                                         <th>Edit</th>
@@ -44,18 +44,20 @@
                                         <td>{{ $admin->name }}</td>
                                         <td>{{ $admin->email }}</td>
                                         <td>{{ $admin->job_title }}</td>                       
-                                        <td>
+                                        <td>@can('update-car')
                                             <form action ="{{ route('edit_admin', $admin->id)}}">
                                                 <input type="hidden"/>
                                                 <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                             </form>
+                                            @endcan
                                         </td>
-                                        <td>
+                                        <td>@can('delete-admin')
                                             <form method="POST" class="delete_form" action ="{{ route('delete_admin', $admin->id)}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
                                                 <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                             </form> 
+                                            @endcan
                                         </td>
                                     </tr>                   
                                 </tbody>

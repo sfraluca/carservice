@@ -35,8 +35,8 @@
                                         <th>Price</th>
                                         <th>Description</th>
                                         <th>Service date</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        @can('update-car-service')<th>Edit</th>@endcan
+                                        @can('delete-car-service')<th>Delete</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,18 +46,20 @@
                                         <td>{{ $services->price }}</td>
                                         <td>{{ $services->description }}</td>
                                         <td>{{ $services->service_date }}</td>
-                                        <td>
+                                        <td>@can('update-car-service')
                                             <form action ="{{ route('edit_service', $services->id)}}">
                                                 <input type="hidden"/>
                                                 <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                             </form>
+                                            @endcan
                                         </td>
-                                        <td>
+                                        <td>@can('delete-car-service')
                                             <form method="POST" class="delete_form" action ="{{ route('delete_service', $services->id)}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
                                                 <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                             </form> 
+                                            @endcan
                                         </td>
                                     </tr>
                                 </tbody>

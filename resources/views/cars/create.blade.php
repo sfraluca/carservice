@@ -165,7 +165,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="car_body">Motor code</label>
+                                <label for="car_body">Car Body</label>
                                     <input id="car_body" 
                                             type="text" 
                                             class="form-control{{ $errors->has('car_body') ? ' is-invalid' : '' }}" 
@@ -177,6 +177,22 @@
                                             <strong>{{ $errors->first('car_body') }}</strong>
                                         </span>
                                     @endif
+                            </div>
+
+                            <div class="form-group">
+                            <label for="exampleSelectGender">Car owner</label>
+                                <select class="form-control" id="exampleSelectGender" name="user_id" value="{{ old('user_id') }}">
+                                @foreach($users as $id=>$user)
+                                <option value="{{$id}}">{{$user}}</option>
+
+                                @endforeach
+                                
+                                </select>
+                                @if ($errors->has('user'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('user') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>

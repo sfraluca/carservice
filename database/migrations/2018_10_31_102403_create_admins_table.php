@@ -18,12 +18,10 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('job_title');
-            $table->boolean('published')->default(false);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
-            // $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 

@@ -29,6 +29,8 @@ class ProductController extends Controller
 
     public function create()
     {
+        $this->authorize('create-product');
+
         $categories = Category::orderBy('title')->pluck('title','id');
         
         return view('product.create',compact('categories'));
@@ -64,8 +66,11 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('update-product');
+
         $categories = Category::orderBy('title')->pluck('title','id');
         $products = Product::find($id);
+
         return view('product.edit',compact('categories', 'products'));   
     }
 
@@ -91,6 +96,8 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-product');
+
         $product = Product::find($id);
         $product->delete();
 

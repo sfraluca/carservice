@@ -4,6 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Car;
+use App\Admin;
+use App\CarService;
+use App\Category;
+use App\Product;
+use App\Role;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,12 +30,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        $this->registerAdminPolicies();
         $this->registerCarPolicies();
+        $this->registerCarServicePolicies();
         $this->registerCategoryPolicies();
         $this->registerProductPolicies();
-        $this->registerCarServicePolicies();
-        $this->registerAdminPolicies();
-        //
+        
     }
     public function registerAdminPolicies()
     {
@@ -37,8 +43,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-admin',function($admin){
             return $admin->hasAccess(['create-admin']);
         });
-        Gate::define('update-admin',function($admin, \App\Admin $admins){
-            return $admin->hasAccess(['update-admin']) or $admin->id == $admins->admin_id;
+        Gate::define('update-admin',function($admin){
+            return $admin->hasAccess(['update-admin']);
         });
         Gate::define('delete-admin',function($admin){
             return $admin->hasAccess(['delete-admin']);
@@ -48,11 +54,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         //Car
         Gate::define('create-car',function($admin){
-            // return $admin->hasAccess(['create-car']);
-            return true;
+            return $admin->hasAccess(['create-car']);
         });
-        Gate::define('update-car',function($admin, \App\Car $car){
-            return $admin->hasAccess(['update-car']) or $admin->id == $car->admin_id;
+        Gate::define('update-car',function($admin){
+            return $admin->hasAccess(['update-car']);
         });
         Gate::define('delete-car',function($admin){
             return $admin->hasAccess(['delete-car']);
@@ -65,10 +70,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-car-service',function($admin){
             return $admin->hasAccess(['create-car-service']);
         });
-        Gate::define('update-car-service',function($admin, \App\CarService $carservice){
-            return $admin->hasAccess(['update-car-service']) or $admin->id == $carservice->admin_id;
+        Gate::define('update-car-service',function($admin){
+            return $admin->hasAccess(['update-car-service']);
         });
-        Gate::define('delete-car',function($admin){
+        Gate::define('delete-car-service',function($admin){
             return $admin->hasAccess(['delete-car-service']);
         });
     }
@@ -79,8 +84,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-category',function($admin){
             return $admin->hasAccess(['create-category']);
         });
-        Gate::define('update-category',function($admin, \App\Category $category){
-            return $admin->hasAccess(['update-category']) or $admin->id == $category->admin_id;
+        Gate::define('update-category',function($admin){
+            return $admin->hasAccess(['update-category']);
         });
         Gate::define('delete-category',function($admin){
             return $admin->hasAccess(['delete-category']);
@@ -93,8 +98,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-product',function($admin){
             return $admin->hasAccess(['create-product']);
         });
-        Gate::define('update-product',function($admin, \App\Product $product){
-            return $admin->hasAccess(['update-product']) or $admin->id == $product->admin_id;
+        Gate::define('update-product',function($admin){
+            return $admin->hasAccess(['update-product']);
         });
         Gate::define('delete-product',function($admin){
             return $admin->hasAccess(['delete-product']);

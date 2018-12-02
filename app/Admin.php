@@ -51,8 +51,4 @@ class Admin extends Authenticatable
        }
        return false;
     }
-    // public function inRole($roleSlug)
-    // {
-    //     return $this->roles()->where('slug',$roleSlug)->count()==1;
-    // }
 }

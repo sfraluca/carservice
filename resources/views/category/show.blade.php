@@ -32,26 +32,28 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        @can('update-category')<th>Edit</th>@endcan
+                                        @can('delete-category')<th>Delete</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>{{ $category->id }} </td>
                                         <td>{{ $category->title }}</td>
-                                        <td>
+                                        <td>@can('update-category')
                                             <form action ="{{ route('edit_category', $category->id)}}">
                                                 <input type="hidden"/>
                                                 <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                             </form>
+                                            @endcan
                                         </td>
-                                        <td>
+                                        <td>@can('delete-category')
                                             <form method="POST" class="delete_form" action ="{{ route('delete_category', $category->id)}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
                                                 <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                             </form> 
+                                            @endcan
                                         </td>
                                     </tr>
                                 </tbody>

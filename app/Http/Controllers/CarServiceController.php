@@ -17,20 +17,21 @@ class CarServiceController extends Controller
      */
 
     public function __construct()
-
     {
         $this->middleware('auth:admin');
-
     }
 
     public function index()
     {
         $services = CarService::all();
+
         return view('car_service.index', compact('services'));
     }
 
     public function create()
     {
+        $this->authorize('create-car-service');
+
         $cars = Car::orderBy('plate_number')->pluck('plate_number','id');
         $products = Product::orderBy('description')->pluck('description','id');
         
@@ -50,14 +51,12 @@ class CarServiceController extends Controller
         ]);
             
         $services = new CarService;
-
         $services->title = $request->title;
         $services->price = $request->price;
         $services->description = $request->description;
         $services->service_date = $request->service_date;
         $services->car_id = $request->car_id;
         $services->product_id = $request->product_id;
-
         $services->save();
         
         return redirect()->route('show_car_service', $services->id);
@@ -72,10 +71,13 @@ class CarServiceController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('update-car-service');
+
         $cars = Car::orderBy('plate_number')->pluck('plate_number','id');
         $products = Product::orderBy('description')->pluck('description','id');
         
         $services = CarService::find($id);
+
         return view('car_service.edit',compact('services', 'cars','products'));   
     }
 
@@ -107,6 +109,8 @@ class CarServiceController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-car-service');
+
         $services = CarService::find($id);
         $services->delete();
         

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Car;
 use App\CarService;
 use App\Entities\RegisterCar;
+use Auth;
+use App\User;
 
 class CarController extends Controller
 {
@@ -30,18 +32,22 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
+
         return view('cars.index',compact('cars'));
     }
 
     public function create()
     {
-        Auth::check();
-        return view('cars.create');
+        $this->authorize('create-car');
+
+        $users = User::orderBy('name')->pluck('name','id');
+
+        return view('cars.create',compact('users'));
    
     }
 
     
-    public function store(Request $request) 
+    public function store(Request  $request) 
     {
         $request->validate([
             'plate_number' => 'required',
@@ -54,6 +60,7 @@ class CarController extends Controller
             'injection_type' => 'required',
             'motor_code' => 'required',
             'car_body' => 'required',
+            'user_id' =>'required'
             ]); 
            
         $car = $this->cars->registerCar($request->all());
@@ -64,12 +71,16 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::find($id);
+
         return view('cars.show',compact('car'));
     }
 
     public function edit($id)
     {
+        $this->authorize('update-car');
+
         $car = Car::find($id);
+
         return view('cars.edit',compact('car'));
     }
 
@@ -108,6 +119,8 @@ class CarController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-car');
+        
         $services = CarService::where('car_id', $id);
         $services->delete();
         $car = Car::find($id);
