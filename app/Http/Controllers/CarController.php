@@ -35,8 +35,9 @@ class CarController extends Controller
 
     public function create()
     {
-        
+        Auth::check();
         return view('cars.create');
+   
     }
 
     
@@ -48,10 +49,11 @@ class CarController extends Controller
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
-            'KW' => 'required',
-            'CP' => 'required',
-            'car_body' => 'required',
+            'fuel_type' => 'required',
             'motor' => 'required',
+            'injection_type' => 'required',
+            'motor_code' => 'required',
+            'car_body' => 'required',
             ]); 
            
         $car = $this->cars->registerCar($request->all());
@@ -79,10 +81,11 @@ class CarController extends Controller
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
-            'KW' => 'required',
-            'CP' => 'required',
-            'car_body' => 'required',
+            'fuel_type' => 'required',
             'motor' => 'required',
+            'injection_type' => 'required',
+            'motor_code' => 'required',
+            'car_body' => 'required',
             ]); 
 
         $car = Car::find($id);
@@ -92,10 +95,11 @@ class CarController extends Controller
         $car->model = $request->input('model');
         $car->year = $request->input('year');
         $car->color = $request->input('color');
-        $car->KW = $request->input('KW');
-        $car->CP = $request->input('CP');
-        $car->car_body = $request->input('car_body');
+        $car->fuel_type = $request->input('fuel_type');
         $car->motor = $request->input('motor');
+        $car->injection_type = $request->input('injection_type');
+        $car->motor_code = $request->input('motor_code');
+        $car->car_body = $request->input('car_body');
 
         $car->save();
 

@@ -42,7 +42,7 @@ class ImageController extends Controller
    
         $responseArray = json_decode($res->getBody(), true);
         $responseResultArray = $responseArray["results"][0];
-        $plateNumber = $responseResultArray["plate"];
+        $plateNumber = $responseResultArray["plate"];dd($plateNumber);
 
         $services = DB::table('cars')->select('id')->where('plate_number', $plateNumber)->get();
 

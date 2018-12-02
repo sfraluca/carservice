@@ -23,7 +23,7 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('admin_id')->references('id')->on('admins');
+            // $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 

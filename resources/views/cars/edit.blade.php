@@ -113,39 +113,71 @@
                             </div>
 
                             <div class="form-group ">
-                                <label for="KW">KW</label>
-                                    <input id="KW" 
+                                <label for="fuel_type">Fuel type</label>
+                                    <input id="fuel_type" 
                                             type="text" 
-                                            class="form-control{{ $errors->has('KW') ? ' is-invalid' : '' }}" 
-                                            name="KW" 
-                                            value="{{ $car->KW }}" 
+                                            class="form-control{{ $errors->has('fuel_type') ? ' is-invalid' : '' }}" 
+                                            name="fuel_type" 
+                                            value="{{ $car->fuel_type }}" 
                                             required>
 
-                                    @if ($errors->has('KW'))
+                                    @if ($errors->has('fuel_type'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('KW') }}</strong>
+                                            <strong>{{ $errors->first('fuel_type') }}</strong>
                                         </span>
                                     @endif
                             </div>
 
                             <div class="form-group ">
-                                <label for="CP">CP</label>
-                                    <input id="CP" 
+                                <label for="motor">Motor</label>
+                                    <input id="motor" 
                                             type="text" 
-                                            class="form-control{{ $errors->has('CP') ? ' is-invalid' : '' }}" 
-                                            name="CP"  
-                                            value="{{ $car->CP }}" 
+                                            class="form-control{{ $errors->has('motor') ? ' is-invalid' : '' }}" 
+                                            name="motor"  
+                                            value="{{ $car->motor }}" 
                                             required>
 
-                                    @if ($errors->has('CP'))
+                                    @if ($errors->has('motor'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('CP') }}</strong>
+                                            <strong>{{ $errors->first('motor') }}</strong>
                                         </span>
                                     @endif
                             </div>
 
 
                             <div class="form-group ">
+                                <label for="injection_type">Injection type</label>
+                                    <input id="injection_type" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('injection_type') ? ' is-invalid' : '' }}" 
+                                            name="injection_type" 
+                                            value="{{ $car->injection_type }}" 
+                                            required>
+
+                                    @if ($errors->has('injection_type'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('injection_type') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="motor_code">Motor code</label>
+                                    <input id="motor_code" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('motor_code') ? ' is-invalid' : '' }}" 
+                                            name="motor_code" 
+                                            value="{{ $car->motor_code }}" 
+                                            required>
+
+                                    @if ($errors->has('motor_code'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('motor_code') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
                                 <label for="car_body">Car body</label>
                                     <input id="car_body" 
                                             type="text" 
@@ -157,22 +189,6 @@
                                     @if ($errors->has('car_body'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('car_body') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
-
-                            <div class="form-group">
-                                <label for="motor">Motor</label>
-                                    <input id="motor" 
-                                            type="text" 
-                                            class="form-control{{ $errors->has('motor') ? ' is-invalid' : '' }}" 
-                                            name="motor" 
-                                            value="{{ $car->motor }}" 
-                                            required>
-
-                                    @if ($errors->has('motor'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('motor') }}</strong>
                                         </span>
                                     @endif
                             </div>

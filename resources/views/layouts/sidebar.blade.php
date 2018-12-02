@@ -28,7 +28,9 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_admins') }}">Admins list</a></li>
+                @can('create-admin')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('create_admin') }}">Add admin</a></li>
+                @endcan
               </ul>
             </div>
           </li>
@@ -41,7 +43,11 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_cars') }}">Cars list</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('create_car') }}">Add car</a></li>
+                <li class="nav-item">
+                  @can('create-car')
+                  <a class="nav-link" href="{{ route('create_car') }}">Add car</a>
+                  @endcan
+                 </li>
               </ul>
             </div>
           </li>
@@ -55,7 +61,9 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_car_service') }}">Service list</a></li>
+                @can('create-car-service')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('create_car_service') }}">Add service</a></li>
+                @endcan
               </ul>
             </div>
           </li>
@@ -69,7 +77,9 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_products') }}">Product list</a></li>
+                @can('create-product')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('create_product') }}">Add product</a></li>
+                @endcan
               </ul>
             </div>
           </li>
@@ -83,7 +93,9 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_category') }}">Category list</a></li>
+                @can('create-category')
                 <li class="nav-item"> <a class="nav-link" href="{{ route('create_category') }}">Add category</a></li>
+                @endcan
               </ul>
             </div>
           </li>

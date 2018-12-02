@@ -42,17 +42,17 @@ class Admin extends Authenticatable
     }
     
     
-
-    public function hasAccess(array $permission){
-        foreach($this->roles as $role){
-            if($role->hasAccess($permission)){
+    public function hasAccess(array $permissions)
+    {
+       foreach($this->roles as $role){
+            if($role->hasAccess($permissions)){
                 return true;
             }
-        }
-        return false;
+       }
+       return false;
     }
-    public function inRole($roleSlug)
-    {
-        return $this->roles()->where('slug',$roleSlug)->count()==1;
-    }
+    // public function inRole($roleSlug)
+    // {
+    //     return $this->roles()->where('slug',$roleSlug)->count()==1;
+    // }
 }

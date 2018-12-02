@@ -36,10 +36,11 @@
                                     <th>Model</th>
                                     <th>Year</th>
                                     <th>Color</th>
-                                    <th>KW</th>
-                                    <th>CP</th>
-                                    <th>Car body</th>
+                                    <th>Fuel type</th>
                                     <th>Motor</th>
+                                    <th>Injection type</th>
+                                    <th>Motor code</th>
+                                    <th>Car body</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -52,8 +53,10 @@
                                     <td>{{ $car->model }}</td>
                                     <td>{{ $car->year }}</td>
                                     <td>{{ $car->color }}</td>
-                                    <td>{{ $car->KW }}</td>
-                                    <td>{{ $car->CP }}</td>
+                                    <td>{{ $car->fuel_type }}</td>
+                                    <td>{{ $car->motor }}</td>
+                                    <td>{{ $car->injection_type }}</td>
+                                    <td>{{ $car->motor_code }}</td>
                                     <td>{{ $car->car_body }}</td>
                                     <td>{{ $car->motor }}</td>
                                     <td>

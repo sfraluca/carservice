@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->string('price');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('roles_id')->unsigned();
+            $table->foreign('roles_id')->references('id')->on('roles');
             $table->timestamps();
             $table->softDeletes();
         });
