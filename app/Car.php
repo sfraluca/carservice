@@ -13,30 +13,12 @@ class Car extends Model
     protected $guard = 'admin';
 
     protected $fillable = [
-        'plate_number', 'brand', 'model', 'year', 'color', 'KW','CP','car_body','motor'
+       'roles_id', 'plate_number', 'brand', 'model', 'year', 'color','fuel_type', 'motor','injection_type','motor_code','car_body',
     ];
 
     public function services()
     {
          return $this->hasMany(CarService::class); 
     }
-
-    // public function car_service()
-    // {
-    //     return $this->belongsToMany(CarService::class);
-    // }
-
-    // public function hasAccess(array $permission){
-    //     foreach($this->roles as $role){
-    //         if($role->hasAccess($permission)){
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-    // public function inRole($roleSlug)
-    // {
-    //     return $this->roles()->where('slug',$roleSlug)->count()==1;
-    // }
   
 }

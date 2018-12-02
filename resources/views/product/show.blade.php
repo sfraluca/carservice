@@ -34,8 +34,8 @@
                                         <th>#</th>
                                         <th>Description</th>
                                         <th>Price</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        @can('update-product')<th>Edit</th>@endcan
+                                        @can('delete-product')<th>Delete</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,18 +43,20 @@
                                         <td>{{ $products->id }}</td>
                                         <td>{{ $products->description }}</td>
                                         <td>{{ $products->price }}</td>
-                                        <td>
+                                        <td>@can('update-product')
                                             <form action ="{{ route('edit_product', $products->id)}}">
                                                 <input type="hidden"/>
                                                 <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                             </form>
+                                            @endcan
                                         </td>
-                                        <td>
+                                        <td>@can('delete-product')
                                             <form method="POST" class="delete_form" action ="{{ route('delete_product', $products->id)}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
                                                 <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                             </form> 
+                                            @endcan
                                         </td>
                                     </tr>
                                 </tbody>

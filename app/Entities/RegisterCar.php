@@ -5,6 +5,7 @@ namespace App\Entities;
 use App\Car;
 use App\Image;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 class RegisterCar
 {
     protected $image;
@@ -20,10 +21,12 @@ class RegisterCar
             'model' => $params['model'],
             'year' => $params['year'],
             'color' => $params['color'],
-            'KW' => $params['KW'],
-            'CP' => $params['CP'],
-            'car_body' => $params['car_body'],
+            'fuel_type' => $params['fuel_type'],
             'motor' => $params['motor'],
+            'injection_type' => $params['injection_type'],
+            'motor_code' => $params['motor_code'],
+            'car_body' => $params['car_body'],
+            'user_id' => $params['user_id']
         ]);
         
         return $car;

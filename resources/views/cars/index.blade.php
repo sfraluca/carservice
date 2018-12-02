@@ -26,10 +26,12 @@
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                    @can('create-car')
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right btn-sm">                                                 
                         <a href="{{ route('create_car') }}">Add car</a>
                     </button>   
                     <h4 class="float-right">Create new car:</h4>
+                    @endcan
                     <div class="table-responsive">  
                         <table class="table table-striped">
                             <thead>
@@ -40,13 +42,14 @@
                                     <th>Model</th>
                                     <th>Year</th>
                                     <th>Color</th>
-                                    <th>KW</th>
-                                    <th>CP</th>
-                                    <th>Car body</th>
+                                    <th>Fuel type</th>
                                     <th>Motor</th>
+                                    <th>Injection type</th>
+                                    <th>Motor code</th>
+                                    <th>Car body</th>
                                     <th>Show</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    @can('update-car')<th>Edit</th>@endcan
+                                    @can('update-car')<th>Delete</th>@endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,29 +61,31 @@
                                     <td>{{ $car->model }}</td>
                                     <td>{{ $car->year }}</td>
                                     <td>{{ $car->color }}</td>
-                                    <td>{{ $car->KW }}</td>
-                                    <td>{{ $car->CP }}</td>
-                                    <td>{{ $car->car_body }}</td>
+                                    <td>{{ $car->fuel_type }}</td>
                                     <td>{{ $car->motor }}</td>
+                                    <td>{{ $car->injection_type }}</td>
+                                    <td>{{ $car->motor_code }}</td>
+                                    <td>{{ $car->car_body }}</td>
                                     <td>
                                         <form action ="{{ route('show_car', $car->id)}}">
                                             <input type="hidden"/>
                                             <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">Show</button>
-                                        </form>
+                                        </form>                                       
                                     </td>
-                                    <td>
+                                    <td>@can('update-car')
                                         <form action ="{{ route('edit_car', $car->id)}}">
                                             <input type="hidden"/>
                                             <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                         </form>
+                                        @endcan
                                     </td>
-                                    <td>
+                                    <td>@can('delete-car')
                                         <form method="POST" class="delete_form" action ="{{ route('delete_car', $car->id)}}">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE"/>
                                             <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
                                         </form> 
-                                    </td>
+                                    </td>@endcan
                                 </tr>
                                 @endforeach
                             </tbody>

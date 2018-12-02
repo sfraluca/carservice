@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Add car</h4>  
-                        <form class="forms-sample" method="POST" action="{{ route('store_car') }}">
+                        <form class="forms-sample" method="POST" role="form" action="{{ route('store_car') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="plate_number">Plate Number</label>
@@ -106,45 +106,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="KW">KW</label>
-                                    <input id="KW" 
+                                <label for="fuel_type">Fuel type</label>
+                                    <input id="fuel_type" 
                                             type="text" 
-                                            class="form-control{{ $errors->has('KW') ? ' is-invalid' : '' }}" 
-                                            name="KW" 
+                                            class="form-control{{ $errors->has('fuel_type') ? ' is-invalid' : '' }}" 
+                                            name="fuel_type" 
                                             required>
-                                    @if ($errors->has('KW'))
+                                    @if ($errors->has('fuel_type'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('KW') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CP">CP</label>
-                                    <input id="CP" 
-                                            type="text" 
-                                            class="form-control{{ $errors->has('CP') ? ' is-invalid' : '' }}" 
-                                            name="CP" 
-                                            required>
-
-                                    @if ($errors->has('CP'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('CP') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="car_body">Car body</label>
-                                    <input id="car_body" 
-                                            type="text" 
-                                            class="form-control{{ $errors->has('car_body') ? ' is-invalid' : '' }}" 
-                                            name="car_body" 
-                                            required>
-                                    @if ($errors->has('car_body'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('car_body') }}</strong>
+                                            <strong>{{ $errors->first('fuel_type') }}</strong>
                                         </span>
                                     @endif
                             </div>
@@ -162,6 +132,67 @@
                                             <strong>{{ $errors->first('motor') }}</strong>
                                         </span>
                                     @endif
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="injection_type">Injection type</label>
+                                    <input id="injection_type" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('injection_type') ? ' is-invalid' : '' }}" 
+                                            name="injection_type" 
+                                            required>
+                                    @if ($errors->has('injection_type'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('injection_type') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="motor_code">Motor code</label>
+                                    <input id="motor_code" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('motor_code') ? ' is-invalid' : '' }}" 
+                                            name="motor_code" 
+                                            required>
+
+                                    @if ($errors->has('motor_code'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('motor_code') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="car_body">Car Body</label>
+                                    <input id="car_body" 
+                                            type="text" 
+                                            class="form-control{{ $errors->has('car_body') ? ' is-invalid' : '' }}" 
+                                            name="car_body" 
+                                            required>
+
+                                    @if ($errors->has('car_body'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('car_body') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+
+                            <div class="form-group">
+                            <label for="exampleSelectGender">Car owner</label>
+                                <select class="form-control" id="exampleSelectGender" name="user_id" value="{{ old('user_id') }}">
+                                @foreach($users as $id=>$user)
+                                <option value="{{$id}}">{{$user}}</option>
+
+                                @endforeach
+                                
+                                </select>
+                                @if ($errors->has('user'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('user') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>

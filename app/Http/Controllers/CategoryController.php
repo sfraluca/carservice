@@ -30,6 +30,7 @@ class CategoryController extends Controller
 
     public function create()
     {
+        $this->authorize('create-category');
         return view('category.create');
     }
 
@@ -53,6 +54,8 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('update-category');
+
         $category = Category::find($id);
 
         return view('category.edit',compact('category'));
@@ -75,6 +78,8 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-category');
+
         $products = Product::where('category_id', $id);
         $products->delete();
         $category = Category::find($id);

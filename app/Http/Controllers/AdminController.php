@@ -36,14 +36,16 @@ class AdminController extends Controller
     
     public function create()
     {
+        $this->authorize('create-admin');
+
         $roles = Role::orderBy('name')->pluck('name','id');
         
         return view('auth.register-admin.create',compact('roles'));
-        // return view('auth.register-admin.create');
     }
     
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required',
             'job_title' => 'required',
@@ -67,8 +69,11 @@ class AdminController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('update-admin');
+
         $roles = Role::orderBy('name')->pluck('name','id');
         $admins = Admin::find($id);
+
         return view('auth.register-admin.edit',compact('admins', 'roles'));   
     }
 
@@ -97,6 +102,8 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-admin');
+
         $admin = Admin::find($id);
         $admin->delete();
 

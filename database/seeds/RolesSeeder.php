@@ -18,13 +18,24 @@ class RolesSeeder extends Seeder
             'permissions' => json_encode([
                 'create-car' => true,
                 'update-car' => true,
-                'publish-car' => true,
                 'delete-car' => true,
 
                 'create-admin' => true,
                 'update-admin' => true,
-                'view-admin' => true,
                 'delete-admin' => true,
+
+                'create-car-service' => true,
+                'update-car-service' => true,
+                'delete-car-service' => true,
+
+                'create-category' => true,
+                'update-category' => true,
+                'delete-category' => true,
+
+                'create-product' => true,
+                'update-product' => true,
+                'delete-product' => true,
+
             ]),
         ]);
         
@@ -34,8 +45,19 @@ class RolesSeeder extends Seeder
             'permissions' => json_encode([
                 'create-car' => true,
                 'update-car' => true,
-                'publish-car' => true,
                 'delete-car' => true,
+
+                'create-car-service' => true,
+                'update-car-service' => true,
+                'delete-car-service' => true,
+
+                'create-category' => true,
+                'update-category' => true,
+                'delete-category' => true,
+
+                'create-product' => true,
+                'update-product' => true,
+                'delete-product' => true,
             ]),
         ]);
 
@@ -43,7 +65,7 @@ class RolesSeeder extends Seeder
             'name' => 'Receptionist',
             'slug'=> 'receptionist',
             'permissions' => json_encode([
-                'view-car' => true,
+                'create-car' => true,
             ]),
         ]);
     }

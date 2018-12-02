@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Car;
 use App\CarService;
 use App\Entities\RegisterCar;
+use Auth;
+use App\User;
 
 class CarController extends Controller
 {
@@ -30,17 +32,22 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
+
         return view('cars.index',compact('cars'));
     }
 
     public function create()
     {
-        
-        return view('cars.create');
+        $this->authorize('create-car');
+
+        $users = User::orderBy('name')->pluck('name','id');
+
+        return view('cars.create',compact('users'));
+   
     }
 
     
-    public function store(Request $request) 
+    public function store(Request  $request) 
     {
         $request->validate([
             'plate_number' => 'required',
@@ -48,10 +55,12 @@ class CarController extends Controller
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
-            'KW' => 'required',
-            'CP' => 'required',
-            'car_body' => 'required',
+            'fuel_type' => 'required',
             'motor' => 'required',
+            'injection_type' => 'required',
+            'motor_code' => 'required',
+            'car_body' => 'required',
+            'user_id' =>'required'
             ]); 
            
         $car = $this->cars->registerCar($request->all());
@@ -62,12 +71,16 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::find($id);
+
         return view('cars.show',compact('car'));
     }
 
     public function edit($id)
     {
+        $this->authorize('update-car');
+
         $car = Car::find($id);
+
         return view('cars.edit',compact('car'));
     }
 
@@ -79,10 +92,11 @@ class CarController extends Controller
             'model' => 'required',
             'year' => 'required',
             'color' => 'required',
-            'KW' => 'required',
-            'CP' => 'required',
-            'car_body' => 'required',
+            'fuel_type' => 'required',
             'motor' => 'required',
+            'injection_type' => 'required',
+            'motor_code' => 'required',
+            'car_body' => 'required',
             ]); 
 
         $car = Car::find($id);
@@ -92,10 +106,11 @@ class CarController extends Controller
         $car->model = $request->input('model');
         $car->year = $request->input('year');
         $car->color = $request->input('color');
-        $car->KW = $request->input('KW');
-        $car->CP = $request->input('CP');
-        $car->car_body = $request->input('car_body');
+        $car->fuel_type = $request->input('fuel_type');
         $car->motor = $request->input('motor');
+        $car->injection_type = $request->input('injection_type');
+        $car->motor_code = $request->input('motor_code');
+        $car->car_body = $request->input('car_body');
 
         $car->save();
 
@@ -104,6 +119,8 @@ class CarController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete-car');
+        
         $services = CarService::where('car_id', $id);
         $services->delete();
         $car = Car::find($id);
