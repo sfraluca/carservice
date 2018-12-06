@@ -50,7 +50,7 @@
     <br>
     <br>
     <br>  
-    Your car: {{$plateNumber}}
+    Your info: 
     @foreach ($users as $car)
     user:
        {{ $car->id }}
@@ -58,7 +58,7 @@
        car:
                             {{ $car->plate_number }}
                            
-                            {{ $car->year }}
+                            {{ $car->year }}services:
                             @foreach ($services as $service)
                             {{ $service->title }}
                             @endforeach

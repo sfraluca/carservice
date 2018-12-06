@@ -28,7 +28,7 @@
                     <div class="card-body">
                     @can('create-user')
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
-                        <a href="{{ route('create_admin') }}">Add user</a>
+                        <a href="{{ route('create_user') }}">Add user</a>
                     </button>   
                     @endcan
                     <p>Create new account for user:</p>

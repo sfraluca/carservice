@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Image;
+
 class HomeController extends Controller
 {
     /**
@@ -25,19 +27,7 @@ class HomeController extends Controller
     {
         return view('platform.home');
     }
-    public function car()
-    {
-    //     $cars = DB::table('users')
-    //         ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
-    //         ->get();
-     $users = DB::table('users')
-            ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
-            ->get();
-    $services = DB::table('cars')
-            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
-            ->get();
-        return view('platform.mycar',compact('users','services'));
-    }
+    
     public function store_plate(Request $request)
     {
        $this->validate($request, [
@@ -73,14 +63,25 @@ class HomeController extends Controller
         $responseResultArray = $responseArray["results"][0];
         $plateNumber = $responseResultArray["plate"];
 
-       // $services = DB::table('cars')->select('id')->where('plate_number', $plateNumber)->get();
+       $services = DB::table('cars')->select('id')->where('plate_number', $plateNumber)->get();
 
-        // foreach($services as $service){
-        //     $service_id = $service->id;
-        //     $url = 'admins/service/show/'. $service_id .'?';
-        // }
+        foreach($services as $service){
+            $service_id = $service->id;
+            $url = 'user/service/show/'. $service_id .'?';
+        }
+        return redirect($url);
+        // return redirect()->route('car', compact('services'));
 
-        return redirect()->route('car', compact('plateNumber'));
+    }
 
+    public function show($id)
+    {
+     $users = DB::table('users')
+            ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
+            ->get();
+    $services = DB::table('cars')
+            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
+            ->get();
+    return view('platform.mycar',compact('users','services'));
     }
 }

@@ -41,20 +41,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td>{{$user->id}}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at }}</td>
-                                    <td>{{ $user->updated_at }}</td>
+                                    <td>{{$users->id}}</td>
+                                    <td>{{ $users->name }}</td>
+                                    <td>{{ $users->email }}</td>
+                                    <td>{{ $users->created_at }}</td>
+                                    <td>{{ $users->updated_at }}</td>
                                     <td>@can('update-user')
-                                        <form action ="{{ route('edit_user', $user->id)}}">
+                                        <form action ="{{ route('edit_user', $users->id)}}">
                                             <input type="hidden"/>
                                             <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
                                         </form>
                                         @endcan
                                     </td>
                                     <td>@can('delete-user')
-                                        <form method="POST" class="delete_form" action ="{{ route('delete_user', $user->id)}}">
+                                        <form method="POST" class="delete_form" action ="{{ route('delete_user', $users->id)}}">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE"/>
                                             <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>

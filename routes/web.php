@@ -14,19 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/contact', function () {
-        return view('contact');
-    });
-Route::get('/about', function () {
-        return view('about');
-    });
-Route::get('/services', 'ServicesController@index');
+
+// Route::get('/contact', function () {
+//         return view('contact');
+//     });
+// Route::get('/about', function () {
+//         return view('about');
+//     });
+// Route::get('/services', 'ServicesController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'HomeController@storeimage')->name('store_plate');
-Route::get('/mycar', 'HomeController@car')->name('car');
+Route::post('/home', 'HomeController@store_plate')->name('store_plate');
+Route::get('/user/service/show/{id}', 'HomeController@show')->name('car');
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('web.logout');
 Route::group(['prefix'=>'admin'], function(){

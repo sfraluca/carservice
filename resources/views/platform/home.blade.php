@@ -68,7 +68,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="forms-sample" method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
+            <form class="forms-sample" method="POST" action="{{ route('store_plate') }}" enctype="multipart/form-data">
                                 @csrf
             <div class="modal-body">
                 Description.... 

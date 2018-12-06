@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         $this->registerAdminPolicies();
+        $this->registerUserPolicies();
         $this->registerCarPolicies();
         $this->registerCarServicePolicies();
         $this->registerCategoryPolicies();
@@ -50,6 +51,21 @@ class AuthServiceProvider extends ServiceProvider
             return $admin->hasAccess(['delete-admin']);
         });
     }
+
+    public function registerUserPolicies()
+    {
+        //User
+        Gate::define('create-user',function($admin){
+            return $admin->hasAccess(['create-user']);
+        });
+        Gate::define('update-user',function($admin){
+            return $admin->hasAccess(['update-user']);
+        });
+        Gate::define('delete-user',function($admin){
+            return $admin->hasAccess(['delete-user']);
+        });
+    }
+
     public function registerCarPolicies()
     {
         //Car
