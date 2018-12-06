@@ -26,9 +26,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/css/grayscale.min.css') }}" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="{{ asset('css/css/full-width-pics.css') }}" rel="stylesheet">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
@@ -41,7 +38,12 @@
                 color:#fcc500;
                 font-size: 45px;
             }
-            
+            input.transparent-input{
+       background-color:transparent !important;
+    }
+    textarea.transparent-input{
+       background-color:transparent !important;
+    }
             .section-content{
                 text-align: center; 
             
