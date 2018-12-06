@@ -36,6 +36,21 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">Users</span>
+              <!-- <i class="menu-arrow"></i> -->
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('list_all_users') }}">Users list</a></li>
+                @can('create-user')
+                <li class="nav-item"> <a class="nav-link" href="{{ route('create_user') }}">Add User</a></li>
+                @endcan
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">Cars</span>
               <!-- <i class="menu-arrow"></i> -->
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>

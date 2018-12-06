@@ -24,6 +24,10 @@ class RolesSeeder extends Seeder
                 'update-admin' => true,
                 'delete-admin' => true,
 
+                'create-user' => true,
+                'update-user' => true,
+                'delete-user' => true,
+
                 'create-car-service' => true,
                 'update-car-service' => true,
                 'delete-car-service' => true,
@@ -66,6 +70,10 @@ class RolesSeeder extends Seeder
             'slug'=> 'receptionist',
             'permissions' => json_encode([
                 'create-car' => true,
+
+                'create-user' => true,
+                'update-user' => true,
+                'delete-user' => true,
             ]),
         ]);
     }

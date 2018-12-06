@@ -8,7 +8,7 @@ use App\CarService;
 use App\Entities\RegisterCar;
 use Auth;
 use App\User;
-
+use Validator;
 class CarController extends Controller
 {
     protected $cars;
@@ -61,7 +61,7 @@ class CarController extends Controller
             'motor_code' => 'required',
             'car_body' => 'required',
             'user_id' =>'required'
-            ]); 
+            ]);
            
         $car = $this->cars->registerCar($request->all());
 

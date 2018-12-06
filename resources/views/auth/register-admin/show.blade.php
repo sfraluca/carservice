@@ -34,8 +34,8 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Job</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        @can('update-car')<th>Edit</th>@endcan
+                                        @can('delete-admin')<th>Delete</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>

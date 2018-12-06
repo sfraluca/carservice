@@ -25,6 +25,9 @@ Route::get('/services', 'ServicesController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@storeimage')->name('store_plate');
+Route::get('/mycar', 'HomeController@car')->name('car');
+
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('web.logout');
 Route::group(['prefix'=>'admin'], function(){
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -73,6 +76,30 @@ Route::group(['prefix'=>'admins'], function(){
 
     Route::delete('/destroy/{id}', 'AdminController@destroy')
        ->name('delete_admin');
+
+//User
+
+Route::get('/users/list', 'UserController@index')
+        ->name('list_all_users')
+        ->middleware('auth:admin');
+
+Route::get('/users/create', 'UserController@create')
+    ->name('create_user');
+
+Route::post('/users/create', 'UserController@store')
+    ->name('store_user');
+
+Route::get('/users/show/{id}', 'UserController@show')
+    ->name('show_user');
+
+Route::get('/users/edit/{id}', 'UserController@edit')
+    ->name('edit_user');
+    
+Route::post('/users/edit/{id}', 'UserController@update')
+    ->name('update_user');
+
+Route::delete('/users/destroy/{id}', 'UserController@destroy')
+   ->name('delete_user');
 
 //CARS
 
