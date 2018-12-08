@@ -1,7 +1,7 @@
 @extends('platform')
 
 @section('content')
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top menu" id="mainNav">
+ <nav class="navbar main navbar-expand-lg navbar-dark bg-dark fixed-top menu" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/home') }}">ANPR Service Auto</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
