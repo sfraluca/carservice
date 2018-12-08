@@ -22,6 +22,13 @@ class ServicesController extends Controller
             ->get();
         return view('services', compact('products'));
     }
+    public function about()
+    {
+        $products = DB::table('categories')
+            ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+            ->get();
+        return view('platform.about', compact('products'));
+    }
 
     
 }
