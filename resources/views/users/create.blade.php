@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-account-box"></i>                 
                     </span>
                     Create new user
                 </h3>
@@ -27,7 +27,6 @@
             <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">User Create Account</h4>  
                         <form  class="forms-sample" method="POST" action="{{ route('store_user') }}">
                             @csrf
                             <div class="form-group">
@@ -89,21 +88,16 @@
                                         name="password_confirmation" 
                                         required>                           
                             </div>
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>                     
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>                    
                         </form>                                     
                     </div>
                 </div>
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div> 
 
     </div>
 </div>  
 
-<script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
-<script src="{ asset('vendors/js/vendor.bundle.addons.js') }}"></script>
-<script src="{{ asset('js/off-canvas.js') }}"></script>
-<script src="{{ asset('js/misc.js') }}"></script>
 
 @endsection

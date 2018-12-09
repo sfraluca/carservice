@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-format-list-bulleted"></i>                 
                 </span>
                 Manage all categories
                 </h3>
@@ -25,15 +25,16 @@
             </div>
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body"> <div class="row">
                     @can('create-category')
+                    <div class="float-right">
+                    <p>Create new category:</p>
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
-                        <a href="{{ route('create_category') }}">Add category</a>
-                    </button>   
-                        <p>Create new category:</p>
-                    @endcan
+                        <a class="text-white" href="{{ route('create_category') }}">Add category</a>
+                    </button>     </div>  
+                    @endcan</div><br>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -77,7 +78,7 @@
                     </div>
                 </div>               
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
 
     </div>

@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-wrench"></i>                 
                 </span>
                 Update service
                 </h3>
@@ -26,8 +26,7 @@
                 
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">   
-                        <h4 class="card-title">Admin Create Account</h4>  
+                    <div class="card-body">    
                         <form class="forms-sample" method="POST" action="{{ route('update_service', $services->id) }}">
                             @csrf
                             <div class="form-group">
@@ -137,13 +136,11 @@
                             </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                
-                            <button class="btn btn-light" href ="{{ route('show_car_service', $services->id)}}"> Cancel </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>    @include('layouts.footer')
     </div>
 
     </div>

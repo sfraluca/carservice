@@ -10,9 +10,9 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-format-list-bulleted"></i>                 
                     </span>
-                    Create new admin
+                    Create new category
                 </h3>
                 <nav aria-label="breadcrumb">
                     <ul class="breadcrumb">
@@ -25,8 +25,7 @@
             </div>
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Admin Create Account</h4>  
+                    <div class="card-body"> 
                         <form class="forms-sample" method="POST" action="{{ route('store_category') }}">
                             @csrf
                             <div class="form-group">
@@ -47,12 +46,11 @@
                             </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>  
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
     
     </div>

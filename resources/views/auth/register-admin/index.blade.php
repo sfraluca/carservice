@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-account"></i>                 
                     </span>
                     Manage all admins
                 </h3>
@@ -25,15 +25,19 @@
             </div>
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body"> 
+                        <div class="row">
                     @can('create-admin')
-                    <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
-                        <a href="{{ route('create_admin') }}">Add admin</a>
-                    </button>   
+                    <div class="float-right">
+                    <p>Create new admin:</p>
+                    <button type="submit" class="btn btn-gradient-success btn-icon-text">                                                 
+                        <a class="text-white" href="{{ route('create_admin') }}">Add admin</a>
+                    </button></div>   
                     @endcan
-                    <p>Create new account for admin:</p>
+                   </div>
+                   <br>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -81,7 +85,7 @@
                     </div>
                 </div>               
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
 
     </div>

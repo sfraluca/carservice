@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-car"></i>                 
                     </span>
                     Manage all cars
                 </h3>
@@ -26,14 +26,16 @@
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                    <div class="row">
                     @can('create-car')
-                    <button type="submit" class="btn btn-gradient-success btn-icon-text float-right btn-sm">                                                 
-                        <a href="{{ route('create_car') }}">Add car</a>
-                    </button>   
-                    <h4 class="float-right">Create new car:</h4>
-                    @endcan
+                    <div class="float-right">
+                    <p>Create new car:</p>
+                    <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
+                        <a class="text-white" href="{{ route('create_car') }}">Add car</a>
+                    </button>  </div>  
+                    @endcan</div><br>
                     <div class="table-responsive">  
-                        <table class="table table-striped">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -93,7 +95,7 @@
                     </div>
                 </div>
             </div>               
-        </div>
+        </div>@include('layouts.footer')
     </div>
 
     </div>

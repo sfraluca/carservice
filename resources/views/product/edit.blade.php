@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-subdirectory-arrow-right"></i>                 
                 </span>
                 Edit current product
                 </h3>
@@ -27,7 +27,6 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">   
-                        <h4 class="card-title">Product Edit</h4>  
                         <form class="forms-sample" method="POST" action="{{ route('update_product', $products->id) }}">
                             @csrf
                             <div class="form-group">
@@ -88,13 +87,12 @@
                             </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light" href ="{{ route('show_product', $products->id)}}"> Cancel </button>
 
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
     
     </div>

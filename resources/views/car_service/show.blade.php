@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-wrench"></i>                 
                     </span>
                     Show current service
                 </h3>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body"> 
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -68,7 +68,7 @@
                     </div>
                 </div>               
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
 
     </div>

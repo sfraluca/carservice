@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-car"></i>                 
                     </span>
                     Create new car
                 </h3>
@@ -27,7 +27,6 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add car</h4>  
                         <form class="forms-sample" method="POST" role="form" action="{{ route('store_car') }}">
                             @csrf
                             <div class="form-group">
@@ -165,7 +164,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="car_body">Car Body</label>
+                                <label for="car_body">Car body</label>
                                     <input id="car_body" 
                                             type="text" 
                                             class="form-control{{ $errors->has('car_body') ? ' is-invalid' : '' }}" 
@@ -195,13 +194,14 @@
                                 @endif
                             </div>
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>      
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>   
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        
+    @include('layouts.footer')
     </div>
 
     </div>

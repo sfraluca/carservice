@@ -10,9 +10,9 @@
             <div class="page-header">
                 <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-account-box"></i>                 
                 </span>
-                Edit current User
+                Edit current user
                 </h3>
                 <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -85,14 +85,13 @@
 
                             
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                            <button class="btn btn-light" href ="{{ route('show_admin', $users->id)}}">Cancel</button>        
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>     
                     
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>@include('layouts.footer')
     </div>
     
     </div>

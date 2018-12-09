@@ -10,7 +10,7 @@
             <div class="page-header">
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                    <i class="mdi mdi-home"></i>                 
+                    <i class="mdi mdi-account"></i>                 
                     </span>
                     Show current admin
                 </h3>
@@ -26,9 +26,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body"> 
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
+                    <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
@@ -61,14 +61,18 @@
                                         </td>
                                     </tr>                   
                                 </tbody>
-                            </table>
-                        </div>
+					
+            </table>
+        </div>
+                       
                     </div>
                 </div>
             </div>               
-        </div>
+        </div>@include('layouts.footer')
     </div>
     
     </div>
 </div>
+
+    	
 @endsection

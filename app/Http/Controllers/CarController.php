@@ -8,7 +8,9 @@ use App\CarService;
 use App\Entities\RegisterCar;
 use Auth;
 use App\User;
+use DB;
 use Validator;
+use Carbon;
 class CarController extends Controller
 {
     protected $cars;
@@ -26,7 +28,16 @@ class CarController extends Controller
 
     public function dashboard()
     {
-        return view('auth.admin.dashboard');
+        $carCount = DB::table('cars')->select("id")->count();
+        $servicesCount = DB::table('car_services')->select("id")->whereBetween('created_at', [
+            Carbon\Carbon::now()->startOfWeek(),
+            Carbon\Carbon::now()->endOfWeek(),
+        ])->count();
+        $usersCount = DB::table('users')->select("id")->whereBetween('created_at', [
+            Carbon\Carbon::now()->startOfWeek(),
+            Carbon\Carbon::now()->endOfWeek(),
+        ])->count();
+        return view('auth.admin.dashboard', compact('carCount', 'servicesCount','usersCount'));
     }
     
     public function index()
