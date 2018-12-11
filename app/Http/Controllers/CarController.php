@@ -11,6 +11,7 @@ use App\User;
 use DB;
 use Validator;
 use Carbon;
+
 class CarController extends Controller
 {
     protected $cars;
@@ -37,7 +38,15 @@ class CarController extends Controller
             Carbon\Carbon::now()->startOfWeek(),
             Carbon\Carbon::now()->endOfWeek(),
         ])->count();
-        return view('auth.admin.dashboard', compact('carCount', 'servicesCount','usersCount'));
+        $carsMonth = DB::table('cars')->whereBetween('created_at', [
+            Carbon\Carbon::now()->startOfMonth(),
+            Carbon\Carbon::now()->endOfMonth(),
+        ])->get();
+        $usersMonth = DB::table('users')->whereBetween('created_at', [
+            Carbon\Carbon::now()->startOfMonth(),
+            Carbon\Carbon::now()->endOfMonth(),
+        ])->get();
+        return view('auth.admin.dashboard', compact('carCount', 'servicesCount','usersCount','carsMonth','usersMonth'));
     }
     
     public function index()
