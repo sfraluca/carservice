@@ -63,87 +63,191 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-7 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <h4 class="card-title float-left">Visit And Sales Statistics</h4>
-                    <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>                                     
-                  </div>
-                  <canvas id="visit-sale-chart" class="mt-4"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Traffic Sources</h4>
-                  <canvas id="traffic-chart"></canvas>
-                  <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>                                                      
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Recognize plate number by image</h4>
-                  <div class="table-responsive">
-                   <!-- Button trigger modal -->
-        <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" data-toggle="modal" data-target="#exampleModal">
-        See info
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form class="forms-sample" method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
-                                @csrf
-            <div class="modal-body">
-               <p class="text-center"> The licence plate from the image it will send you to the services from the car plate number from the image.</p>
-                <div class="input-group">
-                    
-                    <div class="custom-file">
-                        <input type="file"data-browse-on-zone-click="true"
-                                            name="image"  
-                                            class="custom-file-input" id="inputGroupFile01" 
-                                            aria-describedby="inputGroupFileAddon01">
-                                            @if ($errors->has('image'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('image') }}</strong>
-                                                </span>
-                                            @endif
-                        <label class="custom-file-label" for="inputGroupFile01"></label>
-                    </div>
-                    </div>
-                <br><div class="modal-footer">
-               <button type="submit" value="Upload" name="submit" class="menu btn btn-primary js-scroll-trigger">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               
-            </div>
-                
-            
-            </form>
-            </div>
-        </div>
-        </div>
-                  </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Recognize plate number by image</h4>
+                    <div class="table-responsive">
+                    <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" data-toggle="modal" data-target="#exampleModal">
+                        See info
+                        </button>
+
+                    <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                <form class="forms-sample" method="POST" action="{{ route('store_image') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-body">
+                                    <p class="text-center"> The licence plate from the image it will send you to the services from the car plate number from the image.</p>
+                                    <div class="input-group">
+
+                                    <div class="custom-file">
+                                    <input type="file"data-browse-on-zone-click="true"
+                                    name="image"  
+                                    class="custom-file-input" id="inputGroupFile01" 
+                                    aria-describedby="inputGroupFileAddon01">
+                                    @if ($errors->has('image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                    @endif
+                                    <label class="custom-file-label" for="inputGroupFile01"></label>
+                                    </div>
+                                    </div>
+                                    <br><div class="modal-footer">
+                                    <button type="submit" value="Upload" name="submit" class="menu btn btn-primary js-scroll-trigger">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                 </div>
-              </div>
             </div>
-          </div>
-          
+        </div>
+    </div> 
+            
+            
+            <br>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Last month registered users</h3>
+                    <div class="table-responsive">
+                        <table id="cars" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>created_at </th>
+                                <th>updated_at </th>
+                                <th>Show</th>
+                                @can('update-user')<th>Edit</th> @endcan
+                                @can('delete-user')<th>Delete</th> @endcan
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($usersMonth as $user)
+                                <tr>
+                                    <td>{{ $user->id}}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $user->updated_at }}</td>
+                                    <td>
+                                    <form action ="{{ route('show_user', $user->id)}}">
+                                    <input type="hidden"/>
+                                    <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">Show</button>
+                                    </form>
+                                    </td>
+                                    <td>@can('update-user')
+                                    <form action ="{{ route('edit_user', $user->id)}}">
+                                    <input type="hidden"/>
+                                    <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                    </form>
+                                    @endcan
+                                    </td>
+                                    <td>@can('delete-user')
+                                    <form method="POST" class="delete_form" action ="{{ route('delete_user', $user->id)}}">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                    </form> 
+                                    @endcan
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Last week registered cars</h3>
+                    <div class="table-responsive">  
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Plate number</th>
+                                    <th>Brand</th>
+                                    <th>Model</th>
+                                    <th>Year</th>
+                                    <th>Color</th>
+                                    <th>Fuel type</th>
+                                    <th>Motor</th>
+                                    <th>Injection type</th>
+                                    <th>Motor code</th>
+                                    <th>Car body</th>
+                                    <th>Show</th>
+                                    @can('update-car')<th>Edit</th>@endcan
+                                    @can('update-car')<th>Delete</th>@endcan
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($carsMonth as $car)
+                                <tr>
+                                    <td>{{ $car->id }}</td>
+                                    <td>{{ $car->plate_number }}</td>
+                                    <td>{{ $car->brand }}</td>
+                                    <td>{{ $car->model }}</td>
+                                    <td>{{ $car->year }}</td>
+                                    <td>{{ $car->color }}</td>
+                                    <td>{{ $car->fuel_type }}</td>
+                                    <td>{{ $car->motor }}</td>
+                                    <td>{{ $car->injection_type }}</td>
+                                    <td>{{ $car->motor_code }}</td>
+                                    <td>{{ $car->car_body }}</td>
+                                    <td>
+                                    <form action ="{{ route('show_car', $car->id)}}">
+                                    <input type="hidden"/>
+                                    <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">Show</button>
+                                    </form>                                       
+                                    </td>
+                                    <td>@can('update-car')
+                                    <form action ="{{ route('edit_car', $car->id)}}">
+                                    <input type="hidden"/>
+                                    <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                    </form>
+                                    @endcan
+                                    </td>
+                                    <td>@can('delete-car')
+                                    <form method="POST" class="delete_form" action ="{{ route('delete_car', $car->id)}}">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                    </form> 
+                                    </td>@endcan
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         @include('layouts.footer')
-      
+        </div>
       </div>
      
     </div>

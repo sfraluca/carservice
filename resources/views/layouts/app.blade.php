@@ -45,7 +45,13 @@ $(document).ready(function() {
 } );
 
 	</script>
-
+<script type="text/javascript" language="javascript" class="init">
+	
+    $(document).ready(function() {
+        $('#cars').DataTable();
+    } );
+    
+        </script>
 
 </head>
 
@@ -62,12 +68,9 @@ $(document).ready(function() {
 
 
 
-  <script src="vendors/js/vendor.bundle.base.js"></script>
-  <script src="vendors/js/vendor.bundle.addons.js"></script>
   <script src="{{ asset('js/off-canvas.js') }}"></script>
   <script src="{{ asset('js/misc.js') }}"></script>
 
 
-  <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>
