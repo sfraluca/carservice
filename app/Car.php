@@ -13,7 +13,7 @@ class Car extends Model
     protected $guard = 'admin';
 
     protected $fillable = [
-       'roles_id', 'plate_number', 'brand', 'model', 'year', 'color','fuel_type', 'motor','injection_type','motor_code','car_body',
+        'plate_number', 'brand', 'model', 'year', 'color','fuel_type', 'motor','injection_type','motor_code','car_body','user_id'
     ];
 
     public function services()
