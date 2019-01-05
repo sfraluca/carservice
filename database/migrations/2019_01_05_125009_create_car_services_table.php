@@ -23,10 +23,7 @@ class CreateCarServicesTable extends Migration
             $table->foreign('car_id')->references('id')->on('cars');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('roles_id')->unsigned();
-            $table->foreign('roles_id')->references('id')->on('roles');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -37,6 +34,8 @@ class CreateCarServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_services');
+        Schema::table('car_services', function (Blueprint $table) {
+            //
+        });
     }
 }
