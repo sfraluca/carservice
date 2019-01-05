@@ -40,7 +40,7 @@ class ImageController extends Controller
             ]
         );
    
-        $responseArray = json_decode($res->getBody(), true);
+        $responseArray = json_decode($res->getBody(), true);dd( $responseArray);
         $responseResultArray = $responseArray["results"][0];
         $plateNumber = $responseResultArray["plate"];
 
