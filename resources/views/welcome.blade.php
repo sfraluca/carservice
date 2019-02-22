@@ -12,6 +12,9 @@
           <ul class="navbar-nav ml-auto">
           @if (Route::has('login'))
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">Welcome</a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link js-scroll-trigger" href="#about">About</a>
                     </li>
                     <li class="nav-item">
@@ -20,6 +23,7 @@
                     <li class="nav-item">
                       <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
                     </li>
+                    
                     @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/home') }}">Home</a>
@@ -68,8 +72,7 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">We are...</h2>
-            <p class="text-white-50">An service auto for Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+            <p class="text-white-50">An service auto application ready to interract with you. We are here to support you and your car. And now everything is more easier with this new technology.</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -181,52 +184,7 @@
     </div>
 </section>
 
-   <!-- Contact Section -->
-   <section class="contact-section bg-black">
-      <div class="container">
 
-        <div class="row">
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Our adress</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-envelope text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Contact Email</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">
-                  <a href="#">hello@yourdomain.com</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Contact Phone</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">+1 (555) 902-8832</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-       
-
-      </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">

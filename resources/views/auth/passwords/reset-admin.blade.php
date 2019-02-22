@@ -22,7 +22,7 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group row">
+                        <div class="form-group">
                            
                            <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-control-lg" id="exampleInputEmail1" placeholder="Email" value="{{ old('email') }}" required autofocus>
                            @if ($errors->has('email'))
@@ -34,7 +34,7 @@
 
                          
                            
-                           <div class="form-group row">
+                           <div class="form-group">
                         <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" required placeholder="Password">
                          @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                 @endif
                                 
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group">
                         <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password_confirmation" required placeholder="Password">
                         @if ($errors->has('password_confirmation'))
                                     <span class="help-block">

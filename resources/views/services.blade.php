@@ -12,6 +12,9 @@
           <ul class="navbar-nav ml-auto">
           @if (Route::has('login'))
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">Welcome</a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link js-scroll-trigger" href="#about">About</a>
                     </li>
                     <li class="nav-item">
@@ -20,6 +23,7 @@
                     <li class="nav-item">
                       <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
                     </li>
+                    
                     @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/home') }}">Home</a>
@@ -68,8 +72,7 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">We are...</h2>
-            <p class="text-white-50">An service auto for Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+            <p class="text-white-50">An service auto application ready to interract with you. We are here to support you and your car. And now everything is more easier with this new technology.</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -83,8 +86,7 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class=" mb-4">Our standards</h2>
-            <p class="">An service auto for Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+            <p class="">Check the prices for our products and services. Here are a list of items categorised by type of products.</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -135,27 +137,29 @@
     <div class="w-100">
         <div class=" mx-auto">
             <div class="auth-form-light text-left ">
-                <form >
+                 <form action="{{route('store_contact')}}" method="post">
+                {{ csrf_field()}}
                     <div class="container">
                         <div class="row">
                             <div class="col form-line">
                                     <div class="form-group">
-                                        <label for="first_name" class="text-white">First Name</label>
-                                        <input type="text" class="form-control transparent-input" id="first_name">                  
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="last_name" class="text-white">Last name</label>
-                                        <input type="text" class="form-control transparent-input " id="last_name">    
+                                        <label for="name" class="text-white">Name</label>
+                                        <input name="name" type="text" class="form-control transparent-input" id="name"required>                  
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="text-white">Your Email Address</label>
-                                        <input type="email" class="form-control transparent-input " id="email">                  
+                                        <input type="email" name="email" class="form-control transparent-input " id="email" required>                  
                                     </div>
+                                    <div class="form-group ">
+                                        <label for="subject" class="text-white">Subject</label>
+                                        <input type="text" name="subject" class="form-control transparent-input " id="subject">    
+                                    </div>
+                                    
                             </div>
                             <div class="col">
                                     <div class="form-group">
                                         <label for="text" class="text-white">Description</label>
-                                        <textarea class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
+                                        <textarea name="message" class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
                                     </div>
                                 <button type="submit" class="btn btn-primary mx-auto">Send</button>
                             </div>

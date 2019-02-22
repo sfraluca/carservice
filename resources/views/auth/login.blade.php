@@ -14,7 +14,7 @@
                         <h6 class="font-weight-light">Sign in to continue.</h6>
                         <form class="pt-3" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-                            <div class="form-group row">
+                            <div class="form-group">
                                 <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-control-lg" id="exampleInputEmail1" placeholder="Email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -22,7 +22,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} row">
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -30,7 +30,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="mt-3"><button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
+                            <div ><button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
                             SIGN IN
                                 </button>
                             </div>
