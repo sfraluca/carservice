@@ -147,27 +147,29 @@
     <div class="w-100">
         <div class=" mx-auto">
             <div class="auth-form-light text-left ">
-                <form >
+                <form action="{{route('store_contact')}}" method="post">
+                {{ csrf_field()}}
                     <div class="container">
                         <div class="row">
                             <div class="col form-line">
                                     <div class="form-group">
-                                        <label for="first_name" class="text-white">First Name</label>
-                                        <input type="text" class="form-control transparent-input" id="first_name">                  
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="last_name" class="text-white">Last name</label>
-                                        <input type="text" class="form-control transparent-input " id="last_name">    
+                                        <label for="name" class="text-white">Name</label>
+                                        <input name="name" type="text" class="form-control transparent-input" id="name"required>                  
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="text-white">Your Email Address</label>
-                                        <input type="email" class="form-control transparent-input " id="email">                  
+                                        <input type="email" name="email" class="form-control transparent-input " id="email" required>                  
                                     </div>
+                                    <div class="form-group ">
+                                        <label for="subject" class="text-white">Subject</label>
+                                        <input type="text" name="subject" class="form-control transparent-input " id="subject">    
+                                    </div>
+                                    
                             </div>
                             <div class="col">
                                     <div class="form-group">
                                         <label for="text" class="text-white">Description</label>
-                                        <textarea class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
+                                        <textarea name="message" class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
                                     </div>
                                 <button type="submit" class="btn btn-primary mx-auto">Send</button>
                             </div>

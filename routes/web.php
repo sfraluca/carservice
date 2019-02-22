@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','WebController@web')->name('website');
+Route::post('/','WebController@storeContact')->name('store_contact');
 
 Route::get('/contact', function () {
         return view('contact');

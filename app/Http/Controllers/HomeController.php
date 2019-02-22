@@ -36,7 +36,7 @@ class HomeController extends Controller
        
        if($request->hasFile('image')){
             $image = $request->file('image');
-            $new_name = rand() .'.'. $image->getClientOriginalExtension();
+            $new_name = rand().'.'. $image->getClientOriginalExtension();
             $image->move(public_path('images'),$new_name);
             $fileImage = new Image;
             $fileImage->image = $new_name;
@@ -68,7 +68,7 @@ class HomeController extends Controller
         foreach($services as $service){
             $service_id = $service->id;
             $url = 'user/service/show/'. $service_id .'?';
-        }
+        }dd($url);
         return redirect($url);
         // return redirect()->route('car', compact('services'));
 

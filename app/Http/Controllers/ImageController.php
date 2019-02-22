@@ -40,7 +40,7 @@ class ImageController extends Controller
             ]
         );
    
-        $responseArray = json_decode($res->getBody(), true);dd( $responseArray);
+        $responseArray = json_decode($res->getBody(), true);
         $responseResultArray = $responseArray["results"][0];
         $plateNumber = $responseResultArray["plate"];
 
@@ -50,8 +50,8 @@ class ImageController extends Controller
             $service_id = $service->id;
             $url = 'admins/service/show/'. $service_id .'?';
         }
-
         return redirect($url);
+       
 
     }
 }
