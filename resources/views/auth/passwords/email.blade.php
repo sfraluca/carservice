@@ -10,7 +10,7 @@
                         <h3 class="brand-logo logo">
                             ANPR Service Auto
 </h3>
-                        <h4>{{ __('Reset Password') }}</h4>
+                        <h4>{{ __('Send Email') }}</h4>
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -23,7 +23,7 @@
                                 @csrf
 
 
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-control-lg" id="exampleInputEmail1" placeholder="Email" value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
