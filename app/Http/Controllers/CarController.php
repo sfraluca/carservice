@@ -70,7 +70,7 @@ class CarController extends Controller
     public function store(Request  $request) 
     {
         $request->validate([
-            'plate_number' => 'required',
+            'plate_number' => 'required|unique',
             'brand' => 'required',
             'model' => 'required',
             'year' => 'required',
