@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store_plate')->name('store_plate');
-Route::get('/user/service/show/{id}', 'HomeController@show')->name('car');
+Route::get('/user/service/show', 'HomeController@show')->name('car');
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('web.logout');
 Route::group(['prefix'=>'admin'], function(){
@@ -47,7 +47,7 @@ Route::group(['prefix'=>'admin'], function(){
 
 Route::get('/admin','CarController@dashboard')->name('dashboard');
 Route::post('/admin','ImageController@storeImage')->name('store_image');
-Route::get('/check/{ImageId}','CarController@check')->name('check');
+Route::get('/admin/profile/service','CarServiceController@index')->name('profile_image');
 
 Route::group(['prefix'=>'admins'], function(){
 

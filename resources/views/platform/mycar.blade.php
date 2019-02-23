@@ -47,9 +47,53 @@
         <div class="row">
         <div class="col-lg-8 mx-auto transbox-service">
             <h3 class="text-center">Data about your car</h3>
+           
+            <h5>You are registered as: <span class="font-weight-bold" >{{ Auth::user()->name }}</span> </h5>
+           <h6>Your service/services for requested numer plate is/are: <span class="font-weight-bold"> 
+          @foreach ($services as $service)
+          <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm">
+                                Service title:
+                                </div>
+                                <div class="col-sm text-left">
+                                {{ $service->title }}
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
+                                Price:
+                                </div>
+                                <div class="col-sm text-left">
+                                {{ $service->price }}
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
+                                Description:
+                                </div>
+                                <div class="col-sm text-left">
+                                {{ $service->description }}
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
+                                Service date:
+                                </div>
+                                <div class="col-sm text-left">
+                                {{ $service->service_date }}
+                                </div>
+                            </div> 
+             
+                        </li>
+                                   
+                    </ul>
+                     
+            @endforeach</span> </h6>
             @foreach ($users as $car)
-    <h5>You are registered as: <span class="font-weight-bold" >{{ $car->name }}</span> </h5>
-    <h5>And your car is: <span class="font-weight-bold" >{{ $car->plate_number }}</span> </h5>
+    
+    <h5>Your car is: <span class="font-weight-bold" >{{ $car->plate_number }}</span> </h5>
       <h6>Data about your car: <span class="font-weight-bold">
 
                     <ul class="list-group">
@@ -130,53 +174,15 @@
                                    
                     </ul>
       
-  
+  @endforeach
+
+
+
       </span></h5>
-      <h6>And your services: <span class="font-weight-bold"> 
-          @foreach ($services as $service)
-          <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm">
-                                Service title:
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $service->title }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                Price:
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $service->price }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                Description:
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $service->description }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                Service date:
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $service->service_date }}
-                                </div>
-                            </div> 
-             
-                        </li>
-                                   
-                    </ul>
-                     
-                            @endforeach</span> </h6>
+      
                            
                             
-        @endforeach
+        
           </div>
         </div>
     </div>

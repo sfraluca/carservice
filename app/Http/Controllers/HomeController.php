@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Image;
+use App\CarService;
 
 class HomeController extends Controller
 {
@@ -60,28 +61,43 @@ class HomeController extends Controller
         );
    
         $responseArray = json_decode($res->getBody(), true);
+        if(!empty($responseArray["results"][0])){
         $responseResultArray = $responseArray["results"][0];
+        }else{
+            Session::flash('error', 'Number plate was not recognized!');
+            return Redirect::to('/home');
+        }
         $plateNumber = $responseResultArray["plate"];
-
-       $services = DB::table('cars')->select('id')->where('plate_number', $plateNumber)->get();
+        $users = DB::table('users')
+            ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
+            ->get();
+        $services = DB::table('cars')
+            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
+            ->where('plate_number', $plateNumber)
+            ->get();
+        if($services->isEmpty()){
+            Session::flash('error', 'Number plate was not registered in data base!');
+            return Redirect::to('/home');
+        }
 
         foreach($services as $service){
             $service_id = $service->id;
-            $url = 'user/service/show/'. $service_id .'?';
-        }dd($url);
-        return redirect($url);
+            if( $service_id==null){
+                Session::flash('error', 'Service was not registered in data base!');
+                return Redirect::to('/home');
+            }
+        }
+        return redirect()->route('car');
         // return redirect()->route('car', compact('services'));
 
     }
 
-    public function show($id)
+    public function show()
     {
-     $users = DB::table('users')
+    $users = DB::table('users')
             ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
             ->get();
-    $services = DB::table('cars')
-            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
-            ->get();
+    $services = CarService::all();
     return view('platform.mycar',compact('users','services'));
     }
 }

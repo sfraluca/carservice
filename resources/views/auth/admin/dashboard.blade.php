@@ -22,8 +22,7 @@
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                  <span></span>Overview
-                  <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  
                 </li>
               </ul>
             </nav>
@@ -70,6 +69,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Recognize plate number by image</h4>
+                    @if(Session::has('error'))
+                    <p class="alert alert-warning">{{ Session::get('error') }}</p>
+                    @endif
                     <div class="table-responsive">
                     <!-- Button trigger modal -->
                         <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" data-toggle="modal" data-target="#exampleModal">

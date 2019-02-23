@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Image;
 use DB;
+use Session;
+use Illuminate\Support\Facades\Redirect;
 
 class ImageController extends Controller
 {
@@ -41,17 +43,35 @@ class ImageController extends Controller
         );
    
         $responseArray = json_decode($res->getBody(), true);
+
+        if(!empty($responseArray["results"][0])){
         $responseResultArray = $responseArray["results"][0];
+        }else{
+            Session::flash('error', 'Number plate was not recognized!');
+            return Redirect::to('/admin');
+        }
+        
         $plateNumber = $responseResultArray["plate"];
 
-        $services = DB::table('cars')->select('id')->where('plate_number', $plateNumber)->get();
+       $services = DB::table('cars')
+            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
+            ->where('plate_number', $plateNumber)
+            ->get();
 
-        foreach($services as $service){
-            $service_id = $service->id;
-            $url = 'admins/service/show/'. $service_id .'?';
+        if($services->isEmpty()){
+            Session::flash('error', 'Number plate was not registered in data base!');
+            return Redirect::to('/admin');
         }
-        return redirect($url);
-       
+            
+        foreach($services as $service){
+        $service_id = $service->id;
+            if( $service_id==null){
+                Session::flash('error', 'Service was not registered in data base!');
+                return Redirect::to('/admin');
+            }
+        }  
+        return redirect()->route('profile_image');
 
+    
     }
 }
