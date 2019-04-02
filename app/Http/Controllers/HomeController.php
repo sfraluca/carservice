@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use App\Image;
 use App\CarService;
-
+use App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     /**
@@ -65,7 +67,8 @@ class HomeController extends Controller
         $responseResultArray = $responseArray["results"][0];
         }else{
             Session::flash('error', 'Number plate was not recognized!');
-            return Redirect::to('/home');
+            // return Redirect::to('/home', app()->getLocale());
+            return redirect()->route('home', app()->getLocale());
         }
         $plateNumber = $responseResultArray["plate"];
         $users = DB::table('users')
@@ -77,17 +80,19 @@ class HomeController extends Controller
             ->get();
         if($services->isEmpty()){
             Session::flash('error', 'Number plate was not registered in data base!');
-            return Redirect::to('/home');
+            // return Redirect::to('/home', app()->getLocale());
+            return redirect()->route('home', app()->getLocale());
         }
 
         foreach($services as $service){
             $service_id = $service->id;
             if( $service_id==null){
                 Session::flash('error', 'Service was not registered in data base!');
-                return Redirect::to('/home');
+                // return Redirect::to('/home', app()->getLocale());
+                return redirect()->route('home', app()->getLocale());
             }
         }
-        return redirect()->route('car');
+        return redirect()->route('car', app()->getLocale());
         // return redirect()->route('car', compact('services'));
 
     }

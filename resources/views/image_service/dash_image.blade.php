@@ -11,15 +11,21 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-wrench"></i>                 
                     </span>
-                    Service Profile
+                    @lang('header.serviceprofile')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                    
-                    </li>
-                    </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">      
@@ -31,10 +37,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Description</th>
-                                        <th>Service date</th>
+                                        <th>@lang('header.title')</th>
+                                        <th>@lang('header.price')</th>
+                                        <th>@lang('header.description')</th>
+                                        <th>@lang('header.servicedate')</th>
                                     </tr>
                                 </thead>
                                 <tbody>

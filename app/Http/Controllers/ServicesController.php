@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use DB;
-
+use App;
 class ServicesController extends Controller
 {
     protected $products;

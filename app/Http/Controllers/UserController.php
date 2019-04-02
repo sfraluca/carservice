@@ -7,7 +7,7 @@ use App\User;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Entities\RegisterUser;
-
+use App;
 class UserController extends Controller
 {
     protected $users;
@@ -52,11 +52,11 @@ class UserController extends Controller
             
             $users = $this->users->register($request->all());
             
-        return redirect()->route('show_user', $users->id);
+        return redirect()->route('show_user', [app()->getLocale(),$users->id]);
     }
 
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $users = User::find($id);
         return view('users.show',compact('users'));
@@ -64,7 +64,7 @@ class UserController extends Controller
 
  
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-user');
 
@@ -73,7 +73,7 @@ class UserController extends Controller
         return view('users.edit',compact('users'));   
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -90,17 +90,17 @@ class UserController extends Controller
 
         $users->save();
 
-        return redirect()->route('show_user', $users->id);
+        return redirect()->route('show_user', [app()->getLocale(),$users->id]);
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-user');
 
         $users = User::find($id);
         $users->delete();
 
-        return redirect()->route('list_all_users');
+        return redirect()->route('list_all_users', app()->getLocale());
     }
 
     

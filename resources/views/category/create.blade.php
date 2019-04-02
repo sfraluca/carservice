@@ -12,23 +12,29 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-format-list-bulleted"></i>                 
                     </span>
-                    Create new category
+                    @lang('header.newcategoru')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                       
-                    </li>
-                    </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body"> 
-                        <form class="forms-sample" method="POST" action="{{ route('store_category') }}">
+                        <form class="forms-sample" method="POST" action="{{ route('store_category',app()->getLocale()) }}">
                             @csrf
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title">@lang('header.title')</label>
                                     <input id="title" 
                                             type="text" 
                                             class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
@@ -44,7 +50,7 @@
                                     @endif
                             </div>
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>
                         </form>
                     </div>
                 </div>

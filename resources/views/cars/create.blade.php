@@ -12,24 +12,30 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-car"></i>                 
                     </span>
-                    Create new car
+                    @lang('header.newcar')
                 </h3>
-                <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                      
-                    </li>
-                    </ul>
-                </nav>
+                 <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
 
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample" method="POST" role="form" action="{{ route('store_car') }}">
+                        <form class="forms-sample" method="POST" role="form" action="{{ route('store_car',app()->getLocale()) }}">
                             @csrf
                             <div class="form-group">
-                                <label for="plate_number">Plate Number</label>
+                                <label for="plate_number">@lang('header.platenumber')</label>
                                     <input id="plate_number" 
                                             type="text" 
                                             class="form-control{{ $errors->has('plate_number') ? ' is-invalid' : '' }}" 
@@ -45,7 +51,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="brand">Brand</label>
+                                <label for="brand">@lang('header.brand')</label>
                                     <input id="brand" 
                                             type="text" 
                                             class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" 
@@ -61,7 +67,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="model">Model</label>
+                                <label for="model">@lang('header.model')</label>
                                     <input id="model" 
                                             type="text" 
                                             class="form-control{{ $errors->has('model') ? ' is-invalid' : '' }}"
@@ -76,7 +82,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="year">Year</label>
+                                <label for="year">@lang('header.year')</label>
                                     <input id="year" 
                                             type="text" 
                                             class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" 
@@ -90,7 +96,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="color">Color</label>
+                                <label for="color">@lang('header.color')</label>
                                     <input id="color" 
                                             type="text" 
                                             class="form-control{{ $errors->has('color') ? ' is-invalid' : '' }}" 
@@ -104,7 +110,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="fuel_type">Fuel type</label>
+                                <label for="fuel_type">@lang('header.fueltype')</label>
                                     <input id="fuel_type" 
                                             type="text" 
                                             class="form-control{{ $errors->has('fuel_type') ? ' is-invalid' : '' }}" 
@@ -118,7 +124,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="motor">Motor</label>
+                                <label for="motor">@lang('header.motor')</label>
                                     <input id="motor" 
                                             type="text" 
                                             class="form-control{{ $errors->has('motor') ? ' is-invalid' : '' }}" 
@@ -134,7 +140,7 @@
 
 
                             <div class="form-group">
-                                <label for="injection_type">Injection type</label>
+                                <label for="injection_type">@lang('header.injection_type')</label>
                                     <input id="injection_type" 
                                             type="text" 
                                             class="form-control{{ $errors->has('injection_type') ? ' is-invalid' : '' }}" 
@@ -148,7 +154,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="motor_code">Motor code</label>
+                                <label for="motor_code">@lang('header.motor_code')</label>
                                     <input id="motor_code" 
                                             type="text" 
                                             class="form-control{{ $errors->has('motor_code') ? ' is-invalid' : '' }}" 
@@ -163,7 +169,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="car_body">Car body</label>
+                                <label for="car_body">@lang('header.car_body')</label>
                                     <input id="car_body" 
                                             type="text" 
                                             class="form-control{{ $errors->has('car_body') ? ' is-invalid' : '' }}" 
@@ -178,7 +184,7 @@
                             </div>
 
                             <div class="form-group">
-                            <label for="exampleSelectGender">Car owner</label>
+                            <label for="exampleSelectGender">@lang('header.carowner')</label>
                                 <select class="form-control" id="exampleSelectGender" name="user_id" value="{{ old('user_id') }}">
                                 @foreach($users as $id=>$user)
                                 <option value="{{$id}}">{{$user}}</option>
@@ -193,7 +199,7 @@
                                 @endif
                             </div>
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>   
+                            <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>   
                         </form>
                     </div>
                 </div>

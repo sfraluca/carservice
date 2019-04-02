@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
 use Auth;
 use Illuminate\Http\Request;
+use App;
 
 class AdminForgotPasswordController extends Controller
 {

@@ -10,23 +10,30 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+Route::group([  'prefix' => '{locale}', 
+                'where' => ['locale' => '[a-zA-Z]{2}'],
+                'middleware' => 'setlocale'], function() {
 Route::get('/','WebController@web')->name('website');
+
 Route::post('/','WebController@storeContact')->name('store_contact');
 
 Route::get('/contact', function () {
         return view('contact');
     });
-Route::get('/about','ServicesController@about');
-Route::get('/services', 'ServicesController@index');
+Route::get('/about','ServicesController@about')->name('about_web');
+Route::get('/services', 'ServicesController@index')->name('web_services');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store_plate')->name('store_plate');
 Route::get('/user/service/show', 'HomeController@show')->name('car');
-
-Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('web.logout');
+Route::get('/login', 'Auth\LoginController@LoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@platformLogin')->name('web_login');
+Route::get('/users', 'Auth\LoginController@userLogout')->name('web.logout');
 Route::group(['prefix'=>'admin'], function(){
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -39,7 +46,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('/password/email','Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset','Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/reset','Auth\AdminResetPasswordController@reset');
-    Route::get('/password/reset/{token}','Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+    Route::get('/password/reset/{token}/','Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 
     
 
@@ -174,7 +181,6 @@ Route::delete('/users/destroy/{id}', 'UserController@destroy')
 
     //Category
 
-    //to checked
     Route::get('/category/list', 'CategoryController@index')
         ->name('list_all_category')
         ->middleware('auth:admin');
@@ -206,4 +212,5 @@ Route::delete('/users/destroy/{id}', 'UserController@destroy')
 
 
 
+});
 });

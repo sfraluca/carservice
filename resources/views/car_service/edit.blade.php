@@ -15,21 +15,27 @@
                 Update service
                 </h3>
                 <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                
-                    </li>
-                </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),[app()->getLocale(), $services->id]) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
                 
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">    
-                        <form class="forms-sample" method="POST" action="{{ route('update_service', $services->id) }}">
+                        <form class="forms-sample" method="POST" action="{{ route('update_service', [app()->getLocale(),$services->id]) }}">
                             @csrf
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title">@lang('header.title')</label>
                                     <input id="title" 
                                             type="text" 
                                             class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
@@ -45,7 +51,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">Price</label>
+                                <label for="price">@lang('header.price')</label>
                                     <input id="price" 
                                             type="text" 
                                             class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
@@ -62,7 +68,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description">@lang('header.description')</label>
                                     <input id="description" 
                                             type="textarea" 
                                             class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
@@ -115,7 +121,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }}">
-                                <label for="product_id">Product</label>
+                                <label for="product_id">@lang('header.product')</label>
                                     <select id="product_id"
                                             type="text"
                                             class="form-control" 
@@ -134,7 +140,7 @@
                                     @endif
                             </div>
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>
                         </form>
                     </div>
                 </div>

@@ -12,24 +12,30 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-account-box"></i>                 
                     </span>
-                    Create new user
+                    @lang('header.newuser')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                      
-                    </li>
-                    </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
 
             <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <form  class="forms-sample" method="POST" action="{{ route('store_user') }}">
+                        <form  class="forms-sample" method="POST" action="{{ route('store_user',app()->getLocale()) }}">
                             @csrf
                             <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">@lang('header.name')</label>
                             <input placeholder="Name" 
                                     id="name" 
                                     type="text" 
@@ -46,7 +52,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email">E-Mail Address</label>
+                                <label for="email">@lang('header.emadress')</label>
                                 <input placeholder="E-Mail Address"
                                         id="email" 
                                         type="email" 
@@ -63,7 +69,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">@lang('header.pass')</label>
                                 <input placeholder="Password"
                                         id="password" 
                                         type="password" 
@@ -79,7 +85,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm">Confirm Password</label>
+                                <label for="password-confirm">@lang('header.confirm')</label>
                                 <input placeholder="Confirm password" 
                                         id="password-confirm" 
                                         type="password" 
@@ -87,7 +93,7 @@
                                         name="password_confirmation" 
                                         required>                           
                             </div>
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>                    
+                                <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>                    
                         </form>                                     
                     </div>
                 </div>

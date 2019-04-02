@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Entities\RegisterProduct;
-
+use App;
 class ProductController extends Controller
 {
     protected $products;
@@ -54,17 +54,17 @@ class ProductController extends Controller
 
         $products->save();
 
-        return redirect()->route('show_product', $products->id);   
+        return redirect()->route('show_product', [ app()->getLocale(),$products->id]);   
     }
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $products = Product::find($id);
         
         return view('product.show',compact('products'));
     }
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-product');
 
@@ -74,7 +74,7 @@ class ProductController extends Controller
         return view('product.edit',compact('categories', 'products'));   
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'price' => 'required',
@@ -91,16 +91,16 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('show_product', $product->id);
+        return redirect()->route('show_product', [app()->getLocale(),$product->id]);
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-product');
 
         $product = Product::find($id);
         $product->delete();
 
-        return redirect()->route('list_all_products');
+        return redirect()->route('list_all_products', app()->getLocale());
     }
 }

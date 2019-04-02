@@ -10,9 +10,9 @@
             <h3 class="brand-logo logo">
                             ANPR Service Auto
 </h3>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3" method="POST" action="{{ route('register') }}">
+              <h4>@lang('header.newhere')</h4>
+              <h6 class="font-weight-light">@lang('header.singingup')</h6>
+              <form class="pt-3" method="POST" action="{{ route('register', app()->getLocale()) }}">
                         @csrf
                         <div class="form-group">
                         <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" name="name" placeholder="Username" required autofocus>
@@ -54,12 +54,12 @@
 
                         <div class="mt-3">
                                 <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
-                                SIGN UP
+                                @lang('header.signup')
                                 </button>
                            
                         </div>
                         <div class="text-center mt-4 font-weight-light">
-                        Already have an account? <a href="{{route('home')}}" class="text-primary">Login</a>
+                        @lang('header.haveandaccount') <a href="{{route('home',app()->getLocale())}}" class="text-primary">@lang('header.login')</a>
                         </div>
                     </form>
              

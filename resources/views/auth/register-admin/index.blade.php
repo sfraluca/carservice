@@ -12,15 +12,21 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-account"></i>                 
                     </span>
-                    Manage all admins
+                    @lang('header.manageadmin')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                     
-                    </li>
-                    </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
@@ -28,9 +34,9 @@
                         <div class="row">
                     @can('create-admin')
                     <div class="float-right">
-                    <p>Create new admin:</p>
+                    <p>@lang('header.newadmin'):</p>
                     <button type="submit" class="btn btn-gradient-success btn-icon-text">                                                 
-                        <a class="text-white" href="{{ route('create_admin') }}">Add admin</a>
+                        <a class="text-white" href="{{ route('create_admin', app()->getLocale()) }}">@lang('header.create_admin')</a>
                     </button></div>   
                     @endcan
                    </div>
@@ -40,12 +46,12 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>@lang('header.name')</th>
                                     <th>Email</th>
-                                    <th>Job </th>
-                                    <th>Show</th>
-                                    @can('update-admin')<th>Edit</th> @endcan
-                                    @can('delete-admin')<th>Delete</th> @endcan
+                                    <th>@lang('header.jobtitle') </th>
+                                    <th>@lang('header.show')</th>
+                                    @can('update-admin')<th>@lang('header.edit')</th> @endcan
+                                    @can('delete-admin')<th>@lang('header.delete')</th> @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -56,23 +62,23 @@
                                     <td>{{ $admin->email }}</td>
                                     <td>{{ $admin->job_title }}</td>
                                     <td>
-                                        <form action ="{{ route('show_admin', $admin->id)}}">
+                                        <form action ="{{ route('show_admin', [app()->getLocale(),$admin->id])}}">
                                             <input type="hidden"/>
-                                            <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">Show</button>
+                                            <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">@lang('header.show')</button>
                                         </form>
                                     </td>
                                     <td>@can('update-admin')
-                                        <form action ="{{ route('edit_admin', $admin->id)}}">
+                                        <form action ="{{ route('edit_admin',[  app()->getLocale(),$admin->id])}}">
                                             <input type="hidden"/>
-                                            <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                            <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">@lang('header.edit')</button>
                                         </form>
                                         @endcan
                                     </td>
                                     <td>@can('delete-admin')
-                                        <form method="POST" class="delete_form" action ="{{ route('delete_admin', $admin->id)}}">
+                                        <form method="POST" class="delete_form" action ="{{ route('delete_admin', [ app()->getLocale(),$admin->id])}}">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE"/>
-                                            <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">@lang('header.delete')</button>
                                         </form> 
                                         @endcan
                                     </td>

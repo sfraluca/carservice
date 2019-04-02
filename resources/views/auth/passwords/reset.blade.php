@@ -10,14 +10,14 @@
                         <h3 class="brand-logo logo">
                             ANPR Service Auto
 </h3>
-                        <h4>{{ __('Reset Password') }}</h4>
+                        <h4>@lang('header.reset')</h4>
                         <div class="card-body">
                         @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @endif
-                        <form method="POST" class="pt-3" action="{{ route('password.update') }}">
+                        <form method="POST" class="pt-3" action="{{ route('password.update',app()->getLocale()) }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -53,7 +53,7 @@
                            
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
-                                    {{ __('Reset Password') }}
+                                    @lang('header.reset')
                                     </button>
                         
                         </div>

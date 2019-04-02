@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Password;
 use Auth;
 use Illuminate\Http\Request;
-
+use App;
 class AdminResetPasswordController extends Controller
 {
     /*
@@ -28,7 +28,10 @@ class AdminResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+      public function redirectTo()
+    {
+        return app()->getLocale() . '/admin';
+    }
 
     /**
      * Create a new controller instance.

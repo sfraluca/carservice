@@ -10,7 +10,7 @@
                         <h3 class="brand-logo logo">
                             ANPR Service Auto
 </h3>
-                        <h4>{{ __('Send Email') }}</h4>
+                        <h4>@lang('header.userreset')</h4>
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -19,7 +19,7 @@
                             @endif
 
 
-                            <form method="POST" class="pt-3" action="{{ route('password.email') }}">
+                            <form method="POST" class="pt-3" action="{{ route('password.email',app()->getLocale()) }}">
                                 @csrf
 
 
@@ -34,7 +34,7 @@
 
                                     <div class="mt-3">
                                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
-                                    {{ __('Send Password Reset Link') }}
+                                     @lang('header.sendpass')
                                     </button>
                                     </div>
 

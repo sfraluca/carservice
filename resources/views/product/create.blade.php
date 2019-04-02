@@ -12,24 +12,30 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                         <i class="mdi mdi-subdirectory-arrow-right"></i>                 
                     </span>
-                Create new product
+                @lang('header.newproduct')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
-                       
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
                         </li>
-                    </ul>
-                </nav>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
 
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form  class="forms-sample" method="POST" action="{{ route('store_product') }}">
+                        <form  class="forms-sample" method="POST" action="{{ route('store_product',app()->getLocale()) }}">
                             @csrf
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description">@lang('header.description')</label>
                                     <input id="description" 
                                             type="textarea" 
                                             class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
@@ -46,7 +52,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">Price</label>
+                                <label for="price">@lang('header.price')</label>
                                     <input id="price" 
                                             type="text" 
                                             class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
@@ -63,7 +69,7 @@
                             </div>
                             
                             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                                <label for="category_id">Category</label>
+                                <label for="category_id">@lang('header.category')</label>
                                     <select id="category_id" 
                                             type="text" 
                                             class="form-control" 
@@ -83,7 +89,7 @@
                                     @endif
                             </div>
 
-                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>
                         </form>
                     </div>
                 </div>

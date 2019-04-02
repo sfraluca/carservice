@@ -3,39 +3,43 @@
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{ url('/') }}">ANPR Service Auto</a>
+        <a class="navbar-brand js-scroll-trigger" href="{{ route('website', app()->getLocale()) }}">ANPR Service Auto</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
+          @lang('header.menu')
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
           @if (Route::has('login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">Welcome</a>
+                      <a class="nav-link js-scroll-trigger" href="#about">@lang('header.about')</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                      <a class="nav-link js-scroll-trigger" href="#projects">@lang('header.services')</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link js-scroll-trigger" href="#projects">Services</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+                      <a class="nav-link js-scroll-trigger" href="#signup">@lang('header.contact')</a>
                     </li>
                     
                     @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                        <a class="nav-link" href="{{ route('home', app()->getLocale()) }}">@lang('header.home')</a>
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">@lang('header.login')</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link" href="{{ route('register', app()->getLocale()) }}">@lang('header.register')</a>
                     </li>
                     @endauth
+                    @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
                 </div>
             @endif
           </ul>
@@ -50,16 +54,15 @@
             <div class="row">
                 <div class="col order-md4 order-sm2">
                 <br> <br><br>  
-                        <h1 class="mx-auto text-center text-uppercase">Services</h1> 
+                        <h1 class="mx-auto text-center text-uppercase">@lang('header.services')</h1> 
                 </div>
                     <div class="col order-md4 order-sm2">
 
                         <div class="mx-auto text-center">
                         <br> <br> <br>
                         <br> <br> <br>
-                        <h2 class="text-white-50 mx-auto mt-3 mb-5">An automatic number-plate recognition service auto is ready to help you to know the status of your car everywhere you are with just one click. 
-                        Upload an image with your car plate number and see the info about your car services.</h2>
-                        <a href="{{ route('login') }}" class="btn btn-primary js-scroll-trigger">Get Started</a>
+                        <h2 class="text-white-50 mx-auto mt-3 mb-5">@lang('header.presentation')</h2>
+                        <a href="{{ route('login', app()->getLocale()) }}" class="btn btn-primary js-scroll-trigger">Get Started</a>
                         </div>
                     </div>
             </div>
@@ -71,8 +74,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">We are...</h2>
-            <p class="text-white-50">An service auto application ready to interract with you. We are here to support you and your car. And now everything is more easier with this new technology.</p>
+            <h2 class="text-white mb-4">@lang('header.we')...</h2>
+            <p class="text-white-50">@lang('header.aboutpresentation')</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -85,8 +88,8 @@
 
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class=" mb-4">Our standards</h2>
-            <p class="">Check the prices for our products and services. Here are a list of items categorised by type of products.</p>
+            <h2 class=" mb-4">@lang('header.standard')</h2>
+            <p class="">@lang('header.standardpres')</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -95,7 +98,7 @@
       <div class="container">
       
     
-        <h1>Prices</h1> 
+        <h1>@lang('header.prices')</h1> 
         @foreach ($products as $product)
         <div class="row">
                 <div class="col-4">
@@ -131,37 +134,37 @@
     
       <div class="section-content">
       <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-              <h2 class="text-white mb-5">Contact us!</h2>
+              <h2 class="text-white mb-5">@lang('header.contactus')!</h2>
       </div>
     <br>
     <div class="w-100">
         <div class=" mx-auto">
             <div class="auth-form-light text-left ">
-                 <form action="{{route('store_contact')}}" method="post">
+                 <form action="{{route('store_contact', app()->getLocale())}}" method="post">
                 {{ csrf_field()}}
                     <div class="container">
                         <div class="row">
                             <div class="col form-line">
                                     <div class="form-group">
-                                        <label for="name" class="text-white">Name</label>
+                                        <label for="name" class="text-white">@lang('header.name')</label>
                                         <input name="name" type="text" class="form-control transparent-input" id="name"required>                  
                                     </div>
                                     <div class="form-group">
-                                        <label for="email" class="text-white">Your Email Address</label>
+                                        <label for="email" class="text-white">@lang('header.email')</label>
                                         <input type="email" name="email" class="form-control transparent-input " id="email" required>                  
                                     </div>
                                     <div class="form-group ">
-                                        <label for="subject" class="text-white">Subject</label>
+                                        <label for="subject" class="text-white">@lang('header.subject')</label>
                                         <input type="text" name="subject" class="form-control transparent-input " id="subject">    
                                     </div>
                                     
                             </div>
                             <div class="col">
                                     <div class="form-group">
-                                        <label for="text" class="text-white">Description</label>
+                                        <label for="text" class="text-white">@lang('header.description')</label>
                                         <textarea name="message" class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
                                     </div>
-                                <button type="submit" class="btn btn-primary mx-auto">Send</button>
+                                <button type="submit" class="btn btn-primary mx-auto">@lang('header.send')</button>
                             </div>
                         </div>
                     <div>

@@ -3,43 +3,42 @@
 @section('content')
 <nav class="navbar main navbar-expand-lg navbar-dark bg-dark fixed-top menu" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">ANPR Service Auto</a>
+        <a class="navbar-brand" href="{{  route('home', app()->getLocale()) }}">ANPR Service Auto</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
        
-            <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                      <a class="nav-link js-scroll-trigger" href="#projects">Services</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+           <li class="nav-item">
+                    <a class="nav-link" href="{{ route('about_web', app()->getLocale()) }}">@lang('header.about')</a>
                     </li>
             @if (Route::has('login'))
                     @auth
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/home') }}">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('home', app()->getLocale()) }}">@lang('header.home')<span class="sr-only">(current)</span></a>
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ route('web.logout', app()->getLocale()) }}">Logout</a>
                     </li>
                     
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">@lang('header.login')</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link" href="{{ route('register', app()->getLocale()) }}">@lang('header.register')</a>
                     </li>
                     @endauth
-                    
+                    @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
                 </div>
             @endif
           </ul>
@@ -54,16 +53,15 @@
             <div class="row">
                 <div class="col order-md4 order-sm2">
                 <br> <br><br>  <br>
-                        <h1 class="mx-auto text-center text-uppercase">About us</h1> 
+                        <h1 class="mx-auto text-center text-uppercase">@lang('header.aboutus')</h1> 
                 </div>
                     <div class="col order-md4 order-sm2">
 
                         <div class="mx-auto text-center">
                         <br> <br> <br>
                         <br> <br> <br>
-                        <h2 class="text-white-50 mx-auto mt-3 mb-5">An automatic number-plate recognition service auto is ready to help you to know the status of your car everywhere you are with just one click. 
-                        Upload an image with your car plate number and see the info about your car services.</h2>
-                        <a href="#about" class="btn menu js-scroll-trigger">Get Started</a>
+                        <h2 class="text-white-50 mx-auto mt-3 mb-5">@lang('header.presentation')</h2>
+                        <a href="{{ route('login', app()->getLocale()) }}" class="btn menu js-scroll-trigger">@lang('header.getstarted')</a>
                         </div>
                     </div>
             </div>
@@ -75,9 +73,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">We are...</h2>
-            <p class="text-white-50">An service auto for Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+            <h2 class="text-white mb-4">@lang('header.we')...</h2>
+            <p class="text-white-50">@lang('header.aboutpresentation')</p>
           </div>
         </div>
         <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
@@ -95,54 +92,11 @@
           </div>
           <div class="col-xl-4 col-lg-5">
             <div class="border-section-text text-center text-lg-left">
-              <h4>Services</h4>
-              <p class="text-black-50 mb-0">Our services is related with the standards and you can see them right here!
-              </p>
+              <h4>@lang('header.services')</h4>
+              <p class="text-black-50 mb-0">@lang('header.service')
+              </p><a href="{{ route('web_services', app()->getLocale()) }}" class="btn menu js-scroll-trigger">@lang('header.info')</a>
             </div>
           </div>
-        </div>
-        <div class="container">
-
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2 class=" mb-4">Our standards</h2>
-            <p class="">An service auto for Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-          </div>
-        </div>
-        <img src="{{ asset('img/ipad.png') }}" class="img-fluid" alt="">
-      </div>
-      <section class="py-5">
-      <div class="container">
-      
-    
-        <h1>Prices</h1> 
-        @foreach ($products as $product)
-        <div class="row">
-                <div class="col-4">
-                    <div class="list-group" >
-                    <a class="list-group-item shadow p-3 mb-5 bg-white rounded font-weight-bold" id="list-revision-list" data-toggle="list">{{ $product->title }}</a>
-                    </div>
-                </div>
-            <div class="col-8">
-                <div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><div class="row">
-                            <div class="col-sm">
-                            {{ $product->description }}
-                            </div>
-                            <div class="col-sm text-right">
-                            {{ $product->price }}
-                            </div>
-                            </div> 
-                        </li>
-                                   
-                    </ul>
-                </div>
-            </div>
-           
-        </div>
-        @endforeach
         </div>
 
         <!-- Project One Row -->
@@ -154,11 +108,9 @@
             <div class="bg-black text-center h-100 project">
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-left">
-                  <h4 class="text-white">Our story</h4>
-                  <p class="mb-0 text-white-50">In the end we are here. With a new concept about ANPR, now you can manage your car in a new brand manner. 
-                  We start our idea from the bottom where our clients can be anybody, not just authorized civils. Then we follow the modern style for managing the services. 
-                  From everywhere your are right now you can upload an image to your website an see everything about your car and the status of your services.</p>
-                  <hr id="line" class="d-none d-lg-block mb-0 ml-0">
+                  <h4 class="text-white">@lang('header.our')</h4>
+                  <p class="mb-0 text-white-50">@lang('header.story')</p>
+                  <hr class="d-none d-lg-block mb-0 ml-0">
                 </div>
               </div>
             </div>
@@ -174,9 +126,9 @@
             <div class="bg-black text-center h-100 project">
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-right">
-                  <h4 class="text-white">Grab it!</h4>
-                  <p class="mb-0 text-white-50">There is no time to wait. Just come and see how it works! Right now. We are waiting you in our service.</p>
-                  <hr id="line" class="d-none line d-lg-block mb-0 mr-0">
+                  <h4 class="text-white">@lang('header.grab')!</h4>
+                  <p class="mb-0 text-white-50">@lang('header.grabpresentation')</p>
+                  <hr class="d-none d-lg-block mb-0 mr-0">
                 </div>
               </div>
             </div>
@@ -185,42 +137,43 @@
 
       </div>
     </section>
-
     <!-- Signup Section -->
    
     <section id="signup" class="signup-section">
     
       <div class="section-content">
       <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-              <h2 class="text-white mb-5">Contact us!</h2>
+              <h2 class="text-white mb-5">@lang('header.contactus')!</h2>
       </div>
     <br>
     <div class="w-100">
         <div class=" mx-auto">
             <div class="auth-form-light text-left ">
-                <form >
+                <form action="{{route('store_contact', app()->getLocale())}}" method="post">
+                {{ csrf_field()}}
                     <div class="container">
                         <div class="row">
                             <div class="col form-line">
                                     <div class="form-group">
-                                        <label for="first_name" class="text-white">First Name</label>
-                                        <input type="text" class="form-control transparent-input" id="first_name">                  
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="last_name" class="text-white">Last name</label>
-                                        <input type="text" class="form-control transparent-input " id="last_name">    
+                                        <label for="name" class="text-white">@lang('header.name')</label>
+                                        <input name="name" type="text" class="form-control transparent-input" id="name"required>                  
                                     </div>
                                     <div class="form-group">
-                                        <label for="email" class="text-white">Your Email Address</label>
-                                        <input type="email" class="form-control transparent-input " id="email">                  
+                                        <label for="email" class="text-white">@lang('header.email')</label>
+                                        <input type="email" name="email" class="form-control transparent-input " id="email" required>                  
                                     </div>
+                                    <div class="form-group ">
+                                        <label for="subject" class="text-white">@lang('header.subject')</label>
+                                        <input type="text" name="subject" class="form-control transparent-input " id="subject">    
+                                    </div>
+                                    
                             </div>
                             <div class="col">
                                     <div class="form-group">
-                                        <label for="text" class="text-white">Description</label>
-                                        <textarea class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
+                                        <label for="text" class="text-white">@lang('header.description')</label>
+                                        <textarea name="message" class="form-control transparent-input" id="exampleFormControlTextarea1" rows="3"></textarea>          
                                     </div>
-                                <button type="submit" class="btn menu mx-auto">Send</button>
+                                <button type="submit" class="btn menu js-scroll-trigger">@lang('header.send')</button>
                             </div>
                         </div>
                     <div>
@@ -230,52 +183,7 @@
     </div>
 </section>
 
-   <!-- Contact Section -->
-   <section class="contact-section bg-black">
-      <div class="container">
 
-        <div class="row">
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Our adress</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-envelope text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Contact Email</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">
-                  <a href="#">hello@yourdomain.com</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Contact Phone</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">+1 (555) 902-8832</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-       
-
-      </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">

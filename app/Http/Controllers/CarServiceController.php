@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\CarService;
 use App\Car;
 use App\Product;
-
+use App;
 class CarServiceController extends Controller
 {
     protected $car_services;
@@ -59,17 +59,17 @@ class CarServiceController extends Controller
         $services->product_id = $request->product_id;
         $services->save();
         
-        return redirect()->route('show_car_service', $services->id);
+        return redirect()->route('show_car_service', [app()->getLocale(),$services->id]);
     }
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $services = CarService::find($id);
         
         return view('car_service.show', compact('services'));
     }
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-car-service');
 
@@ -81,7 +81,7 @@ class CarServiceController extends Controller
         return view('car_service.edit',compact('services', 'cars','products'));   
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
@@ -104,16 +104,16 @@ class CarServiceController extends Controller
 
         $services->save();
 
-        return redirect()->route('show_car_service', $services->id);
+        return redirect()->route('show_car_service', [app()->getLocale(),$services->id]);
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-car-service');
 
         $services = CarService::find($id);
         $services->delete();
         
-        return redirect()->route('list_all_car_service');
+        return redirect()->route('list_all_car_service', app()->getLocale());
     }
 }

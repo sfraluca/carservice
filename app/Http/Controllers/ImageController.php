@@ -7,7 +7,7 @@ use App\Image;
 use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
-
+use App;
 class ImageController extends Controller
 {
   
@@ -48,7 +48,8 @@ class ImageController extends Controller
         $responseResultArray = $responseArray["results"][0];
         }else{
             Session::flash('error', 'Number plate was not recognized!');
-            return Redirect::to('/admin');
+            // return Redirect::to('/admin');
+            return redirect()->route('dashboard', app()->getLocale());
         }
         
         $plateNumber = $responseResultArray["plate"];
@@ -60,17 +61,19 @@ class ImageController extends Controller
 
         if($services->isEmpty()){
             Session::flash('error', 'Number plate was not registered in data base!');
-            return Redirect::to('/admin');
+            // return Redirect::to('/admin');
+            return redirect()->route('dashboard', app()->getLocale());
         }
             
         foreach($services as $service){
         $service_id = $service->id;
             if( $service_id==null){
                 Session::flash('error', 'Service was not registered in data base!');
-                return Redirect::to('/admin');
+                // return Redirect::to('/admin');
+                return redirect()->route('dashboard', app()->getLocale());
             }
         }  
-        return redirect()->route('profile_image');
+        return redirect()->route('profile_image', app()->getLocale());
 
     
     }

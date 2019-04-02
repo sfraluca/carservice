@@ -4,9 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+use App;
+use Illuminate\Support\Facades\Redirect;
 class RedirectIfAuthenticated
 {
+    
     /**
      * Handle an incoming request.
      *
@@ -20,13 +22,14 @@ class RedirectIfAuthenticated
         switch($guard){
             case 'admin':
                 if(Auth::guard($guard)->check()) {
-                    return redirect()->route('admin.dashboard');
+                    return redirect()->intended(route('admin.dashboard'));
                 }
                 break;
             
             default:
                 if (Auth::guard($guard)->check()) {
-                return redirect('/home');
+                // return Redirect::to('/home/ro');
+                return redirect()->intended(route('home'));
             }
                 break;
         }

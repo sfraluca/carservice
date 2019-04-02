@@ -12,15 +12,21 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-format-list-bulleted"></i>                 
                     </span>
-                    Show current category
+                    @lang('header.showcategory')
                 </h3>
-                <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                       
-                    </li>
-                    </ul>
-                </nav>
+               <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),[app()->getLocale(), $category->id]) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -30,9 +36,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        @can('update-category')<th>Edit</th>@endcan
-                                        @can('delete-category')<th>Delete</th>@endcan
+                                        <th>@lang('header.title')</th>
+                                        @can('update-category')<th>@lang('header.edit')</th>@endcan
+                                        @can('delete-category')<th>@lang('header.delete')</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,17 +46,17 @@
                                         <td>{{ $category->id }} </td>
                                         <td>{{ $category->title }}</td>
                                         <td>@can('update-category')
-                                            <form action ="{{ route('edit_category', $category->id)}}">
+                                            <form action ="{{ route('edit_category', [app()->getLocale(),$category->id])}}">
                                                 <input type="hidden"/>
-                                                <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                                <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">@lang('header.edit')</button>
                                             </form>
                                             @endcan
                                         </td>
                                         <td>@can('delete-category')
-                                            <form method="POST" class="delete_form" action ="{{ route('delete_category', $category->id)}}">
+                                            <form method="POST" class="delete_form" action ="{{ route('delete_category', [app()->getLocale(),$category->id])}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
-                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">@lang('header.delete')</button>
                                             </form> 
                                             @endcan
                                         </td>

@@ -12,15 +12,21 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-account"></i>                 
                     </span>
-                    Show current admin
+                    @lang('header.showadmin')
                 </h3>
-                <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        
-                    </li>
-                    </ul>
-                </nav>
+                 <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),[app()->getLocale(), $admin->id]) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -30,11 +36,11 @@
                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>@lang('header.name')</th>
                                         <th>Email</th>
-                                        <th>Job</th>
-                                        @can('update-car')<th>Edit</th>@endcan
-                                        @can('delete-admin')<th>Delete</th>@endcan
+                                        <th>@lang('header.jobtitle')</th>
+                                        @can('update-car')<th>@lang('header.edit')</th>@endcan
+                                        @can('delete-admin')<th>@lang('header.delete')</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,17 +50,17 @@
                                         <td>{{ $admin->email }}</td>
                                         <td>{{ $admin->job_title }}</td>                       
                                         <td>@can('update-car')
-                                            <form action ="{{ route('edit_admin', $admin->id)}}">
+                                            <form action ="{{ route('edit_admin', [app()->getLocale(),  $admin->id])}}">
                                                 <input type="hidden"/>
-                                                <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                                <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">@lang('header.edit')</button>
                                             </form>
                                             @endcan
                                         </td>
                                         <td>@can('delete-admin')
-                                            <form method="POST" class="delete_form" action ="{{ route('delete_admin', $admin->id)}}">
+                                            <form method="POST" class="delete_form" action ="{{ route('delete_admin', [app()->getLocale(), $admin->id])}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
-                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">@lang('header.delete')</button>
                                             </form> 
                                             @endcan
                                         </td>

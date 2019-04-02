@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use App\Car;
 use App\CarService;
 use App\Entities\RegisterCar;
-use Auth;
 use App\User;
 use DB;
-use Validator;
 use Carbon;
-
 class CarController extends Controller
 {
     protected $cars;
@@ -85,17 +82,17 @@ class CarController extends Controller
            
         $car = $this->cars->registerCar($request->all());
 
-        return redirect()->route('show_car', $car->id);
+        return redirect()->route('show_car',[ app()->getLocale(),$car->id]);
     }
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $car = Car::find($id);
 
         return view('cars.show',compact('car'));
     }
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-car');
 
@@ -104,7 +101,7 @@ class CarController extends Controller
         return view('cars.edit',compact('car'));
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'plate_number' => 'required',
@@ -134,10 +131,10 @@ class CarController extends Controller
 
         $car->save();
 
-        return redirect()->route('show_car', $car->id);
+        return redirect()->route('show_car', [app()->getLocale() ,$car->id]);
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-car');
         
@@ -146,6 +143,6 @@ class CarController extends Controller
         $car = Car::find($id);
         $car->delete();
 
-        return redirect()->route('list_all_cars');
+        return redirect()->route('list_all_cars', app()->getLocale());
     }
 }

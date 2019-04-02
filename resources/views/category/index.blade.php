@@ -12,24 +12,30 @@
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-format-list-bulleted"></i>                 
                 </span>
-                Manage all categories
+                @lang('header.managecategory')
                 </h3>
                 <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                   
-                    </li>
-                </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-14 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body"> <div class="row">
                     @can('create-category')
                     <div class="float-right">
-                    <p>Create new category:</p>
+                    <p>@lang('header.newcategoru'):</p>
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
-                        <a class="text-white" href="{{ route('create_category') }}">Add category</a>
+                        <a class="text-white" href="{{ route('create_category', app()->getLocale()) }}">Add category</a>
                     </button>     </div>  
                     @endcan</div><br>
                         <div class="table-responsive">
@@ -37,10 +43,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Show</th>
-                                        @can('update-category')<th>Edit</th>@endcan
-                                        @can('delete-category')<th>Delete</th>@endcan
+                                        <th>@lang('header.title')</th>
+                                        <th>@lang('header.show')</th>
+                                        @can('update-category')<th>@lang('header.edit')</th>@endcan
+                                        @can('delete-category')<th>@lang('header.delete')</th>@endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,23 +55,23 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->title }}</td>                      
                                         <td>
-                                            <form action ="{{ route('show_category', $category->id)}}">
+                                            <form action ="{{ route('show_category', [app()->getLocale(),$category->id])}}">
                                                 <input type="hidden"/>
-                                                <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">Show</button>
+                                                <button type="submit" class="btn btn-gradient-primary btn-icon-text btn-sm">@lang('header.show')</button>
                                             </form>
                                         </td>
                                         <td>@can('update-category')
-                                            <form action ="{{ route('edit_category', $category->id)}}">
+                                            <form action ="{{ route('edit_category', [ app()->getLocale(),$category->id])}}">
                                                 <input type="hidden"/>
-                                                <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                                <button type="submit"class="btn btn-gradient-dark btn-icon-text btn-sm">@lang('header.edit')</button>
                                             </form>
                                             @endcan
                                         </td>
                                         <td>@can('delete-category')
-                                            <form method="POST" class="delete_form" action ="{{ route('delete_category', $category->id)}}">
+                                            <form method="POST" class="delete_form" action ="{{ route('delete_category', [app()->getLocale(),$category->id])}}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE"/>
-                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">@lang('header.delete')</button>
                                             </form> 
                                             @endcan
                                         </td>

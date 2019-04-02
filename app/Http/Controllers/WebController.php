@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mail;
 use Session;
-
+use App;
 class WebController extends Controller
 {
     
    
     public function web()
     {
+        // App::setlocale($lang);
+        // return view('welcome',compact('lang'));
         return view('welcome');
+        
     }
     
     public function storeContact(Request $request)
@@ -38,6 +41,6 @@ class WebController extends Controller
         });
         Session::flash('success', 'Your email was sent!');
 
-        return redirect()->route('website');
+        return redirect()->route('website', app()->getLocale());
     }
 }

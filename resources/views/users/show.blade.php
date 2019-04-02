@@ -12,15 +12,21 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-account-box"></i>                 
                     </span>
-                    Show current user
+                    @lang('header.showuser')
                 </h3>
                 <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                       
-                    </li>
-                    </ul>
-                </nav>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),[app()->getLocale(), $users->id]) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -30,12 +36,12 @@
                                 <thead>
                                     <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>@lang('header.name')</th>
                                     <th>Email</th>
-                                    <th>created_at </th>
-                                    <th>updated_at </th>
-                                    @can('update-user')<th>Edit</th> @endcan
-                                    @can('delete-user')<th>Delete</th> @endcan
+                                    <th>@lang('header.created_at') </th>
+                                    <th>@lang('header.updated_at') </th>
+                                    @can('update-user')<th>@lang('header.edit')</th> @endcan
+                                    @can('delete-user')<th>@lang('header.delete')</th> @endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,17 +52,17 @@
                                     <td>{{ $users->created_at }}</td>
                                     <td>{{ $users->updated_at }}</td>
                                     <td>@can('update-user')
-                                        <form action ="{{ route('edit_user', $users->id)}}">
+                                        <form action ="{{ route('edit_user', [app()->getLocale(),$users->id])}}">
                                             <input type="hidden"/>
-                                            <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">Edit</button>
+                                            <button type="submit" class="btn btn-gradient-dark btn-icon-text btn-sm">@lang('header.edit')</button>
                                         </form>
                                         @endcan
                                     </td>
                                     <td>@can('delete-user')
-                                        <form method="POST" class="delete_form" action ="{{ route('delete_user', $users->id)}}">
+                                        <form method="POST" class="delete_form" action ="{{ route('delete_user', [ app()->getLocale(),$users->id])}}">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE"/>
-                                            <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-gradient-danger btn-icon-text btn-sm">@lang('header.delete')</button>
                                         </form> 
                                         @endcan
                                     </td>

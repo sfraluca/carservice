@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Entities\RegisterAdmin;
-
+use App;
 class AdminRegisterController extends Controller
 {
     /*
@@ -31,6 +31,7 @@ class AdminRegisterController extends Controller
      * @var string
      */
     // protected $redirectTo = '/admin';
+
     protected $admins;
     /**
      * Create a new controller instance.
@@ -48,7 +49,7 @@ class AdminRegisterController extends Controller
     {
         $roles = Role::orderBy('name')->pluck('name','id');
         
-        return view('auth.admin-register',compact('roles'));
+        return view('auth.admin-register',compact('roles'), app()->getLocale());
     }
     
 
@@ -67,7 +68,7 @@ class AdminRegisterController extends Controller
             
             $admin = $this->admins->register($request->all());
             
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard', app()->getLocale());
     }
 
    

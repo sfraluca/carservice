@@ -7,7 +7,7 @@ use App\Admin;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Entities\RegisterAdmin;
-
+use App;
 class AdminController extends Controller
 {
     protected $admins;
@@ -55,11 +55,11 @@ class AdminController extends Controller
             
             $admin = $this->admins->register($request->all());
             
-        return redirect()->route('show_admin', $admin->id);
+        return redirect()->route('show_admin', [app()->getLocale(),$admin->id]);
     }
 
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $admin = Admin::find($id);
         return view('auth.register-admin.show',compact('admin'));
@@ -67,7 +67,7 @@ class AdminController extends Controller
 
  
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-admin');
 
@@ -77,7 +77,7 @@ class AdminController extends Controller
         return view('auth.register-admin.edit',compact('admins', 'roles'));   
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -97,17 +97,17 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return redirect()->route('show_admin', $admin->id);
+        return redirect()->route('show_admin', [app()->getLocale(),$admin->id] );
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-admin');
 
         $admin = Admin::find($id);
         $admin->delete();
 
-        return redirect()->route('list_all_admins');
+        return redirect()->route('list_all_admins', app()->getLocale());
     }
 
     

@@ -12,24 +12,30 @@
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                     <i class="mdi mdi-account"></i>                 
                     </span>
-                    Create new admin
+                    @lang('header.newadmin')
                 </h3>
-                <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                       
-                    </li>
-                    </ul>
-                </nav>
+               <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                   @foreach (config('app.available_locales') as $locale)
+                        <li class="nav-item">
+                            <a class="nav-link"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </li>
+                    @endforeach
+                </li>
+              </ul>
+            </nav>
             </div>
 
             <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <form  class="forms-sample" method="POST" action="{{ route('store_admin') }}">
+                        <form  class="forms-sample" method="POST" action="{{ route('store_admin',app()->getLocale()) }}">
                             @csrf
                             <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">@lang('header.name')</label>
                             <input placeholder="Name" 
                                     id="name" 
                                     type="text" 
@@ -46,7 +52,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="job_title">Job title</label>                          
+                                <label for="job_title">@lang('header.jobtitle')</label>                          
                                 <input placeholder="Job title"
                                         id="job_title" 
                                         type="text" 
@@ -64,7 +70,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email">E-Mail Address</label>
+                                <label for="email">@lang('header.emadress')</label>
                                 <input placeholder="E-Mail Address"
                                         id="email" 
                                         type="email" 
@@ -81,7 +87,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">@lang('header.pass')</label>
                                 <input placeholder="Password"
                                         id="password" 
                                         type="password" 
@@ -97,7 +103,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm">Confirm Password</label>
+                                <label for="password-confirm">@lang('header.confirm')</label>
                                 <input placeholder="Confirm password" 
                                         id="password-confirm" 
                                         type="password" 
@@ -106,7 +112,7 @@
                                         required>                           
                             </div>
                             <div class="form-group">
-                            <label for="exampleSelectGender">Admin type</label>
+                            <label for="exampleSelectGender">@lang('header.admintype')</label>
                                 <select class="form-control" id="exampleSelectGender" name="role" value="{{ old('role') }}">
                                 @foreach($roles as $id=>$role)
                                 <option value="{{$id}}">{{$role}}</option>
@@ -121,7 +127,7 @@
                                 @endif
                             </div>
 
-                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>
                                                   
                         </form>                                     </div>
                 </div>

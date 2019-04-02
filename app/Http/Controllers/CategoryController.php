@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Entities\RegisterCategory;
-
+use App;
 class CategoryController extends Controller
 {
     protected $category;
@@ -43,16 +43,16 @@ class CategoryController extends Controller
           
         $category = $this->category->registerCategory($request->all());
             
-        return redirect()->route('show_category', $category->id);
+        return redirect()->route('show_category', [app()->getLocale(),$category->id]);
     }
 
-    public function show($id)
+    public function show($locale,$id)
     {
         $category = Category::find($id);
         return view('category.show',compact('category'));
     }
 
-    public function edit($id)
+    public function edit($locale,$id)
     {
         $this->authorize('update-category');
 
@@ -61,7 +61,7 @@ class CategoryController extends Controller
         return view('category.edit',compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update($locale,Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
@@ -73,10 +73,10 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect()->route('show_category', $category->id);
+        return redirect()->route('show_category', [app()->getLocale(),$category->id]);
     }
 
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $this->authorize('delete-category');
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->delete();
 
-        return redirect()->route('list_all_category');
+        return redirect()->route('list_all_category', app()->getLocale());
     }
     
 }
