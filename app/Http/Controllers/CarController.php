@@ -58,7 +58,7 @@ class CarController extends Controller
         $this->authorize('create-car');
 
         $users = User::orderBy('name')->pluck('name','id');
-
+        
         return view('cars.create',compact('users'));
    
     }
@@ -67,7 +67,7 @@ class CarController extends Controller
     public function store(Request  $request) 
     {
         $request->validate([
-            'plate_number' => 'required|unique',
+            'plate_number' => 'required',
             'brand' => 'required',
             'model' => 'required',
             'year' => 'required',

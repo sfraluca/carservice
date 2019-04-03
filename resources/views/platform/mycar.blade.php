@@ -91,90 +91,9 @@
                     </ul>
                      
             @endforeach</span> </h6>
-            @foreach ($users as $car)
+           
     
-    <h5>@lang('header.yourcar') <span class="font-weight-bold" >{{ $car->plate_number }}</span> </h5>
-      <h6>@lang('header.datacar'): <span class="font-weight-bold">
-
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.brand'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->brand }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.model'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->model }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.year'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->year }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.color'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->color }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.fueltype'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->fuel_type }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.motor'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->motor }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.injection_type'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->injection_type }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.motor_code'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->motor_code }}
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                @lang('header.car_body'):
-                                </div>
-                                <div class="col-sm text-left">
-                                {{ $car->car_body }}
-                                </div>
-                            </div> 
-                        </li>
-                                   
-                    </ul>
-      
-  @endforeach
+    
 
 
 

@@ -71,10 +71,18 @@ class HomeController extends Controller
             return redirect()->route('home', app()->getLocale());
         }
         $plateNumber = $responseResultArray["plate"];
-        $users = DB::table('users')
+       
+        return redirect()->route('car', [app()->getLocale(),$plateNumber]);
+        // return redirect()->route('car', compact('services'));
+
+    }
+
+    public function show($locale,$plateNumber)
+    { 
+    $users = DB::table('users')
             ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
             ->get();
-        $services = DB::table('cars')
+    $services = DB::table('cars')
             ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
             ->where('plate_number', $plateNumber)
             ->get();
@@ -92,17 +100,6 @@ class HomeController extends Controller
                 return redirect()->route('home', app()->getLocale());
             }
         }
-        return redirect()->route('car', app()->getLocale());
-        // return redirect()->route('car', compact('services'));
-
-    }
-
-    public function show()
-    {
-    $users = DB::table('users')
-            ->leftJoin('cars', 'users.id', '=', 'cars.user_id')
-            ->get();
-    $services = CarService::all();
     return view('platform.mycar',compact('users','services'));
     }
 }

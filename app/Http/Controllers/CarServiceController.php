@@ -7,6 +7,8 @@ use App\CarService;
 use App\Car;
 use App\Product;
 use App;
+use DB;
+use Session;
 class CarServiceController extends Controller
 {
     protected $car_services;
@@ -20,7 +22,29 @@ class CarServiceController extends Controller
     {
         $this->middleware('auth:admin');
     }
+    public function profileImage($locale,$plateNumber)
+    {
+         $services = DB::table('cars')
+            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
+            ->where('plate_number', $plateNumber)
+            ->get();
+        if($services->isEmpty()){
+            Session::flash('error', 'Number plate was not registered in data base!');
+            // return Redirect::to('/home', app()->getLocale());
+            return redirect()->route('dashboard', app()->getLocale());
+        }
 
+        foreach($services as $service){
+            $service_id = $service->id;
+            if( $service_id==null){
+                Session::flash('error', 'Service was not registered in data base!');
+                // return Redirect::to('/home', app()->getLocale());
+                return redirect()->route('dashboard', app()->getLocale());
+            }
+        }
+
+        return view('car_service.profile', compact('services','plateNumber'));
+    }
     public function index()
     {
         $services = CarService::all();

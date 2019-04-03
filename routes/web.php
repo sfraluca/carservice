@@ -30,11 +30,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store_plate')->name('store_plate');
-Route::get('/user/service/show', 'HomeController@show')->name('car');
+Route::get('/user/service/show/{platenumber}', 'HomeController@show')->name('car');
 Route::get('/login', 'Auth\LoginController@LoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@platformLogin')->name('web_login');
 Route::get('/users', 'Auth\LoginController@userLogout')->name('web.logout');
+
 Route::group(['prefix'=>'admin'], function(){
+        
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
     // Route::get('/register','Auth\AdminRegisterController@createAdmin')->name('admin.createAdmin');
@@ -48,13 +50,12 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('/password/reset','Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}/','Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 
-    
+    });
 
-});
 
 Route::get('/admin','CarController@dashboard')->name('dashboard');
 Route::post('/admin','ImageController@storeImage')->name('store_image');
-Route::get('/admin/profile/service','CarServiceController@index')->name('profile_image');
+Route::get('/admin/profile/service/{plateNumber}','CarServiceController@profileImage')->name('profile_image');
 
 Route::group(['prefix'=>'admins'], function(){
 

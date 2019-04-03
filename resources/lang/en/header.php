@@ -30,7 +30,7 @@ return [
     'upload' => "Upload image",
     'save' => "Save changes",
     'datacar' => "Data about your car",
-    'registeras' => "You are registered as:",
+    'registeras' => "You are registered as",
     'yourservices' => "Your service/services for requested numer plate is/are:",
     'servicetitle' => "Service title:",
     'servicedate' => "Service date",

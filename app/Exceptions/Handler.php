@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
 
         switch ($guard){
             case 'admin':
-                $login = app()->getLocale().'admin/login';
+                $login = app()->getLocale().'/admin/login';
                 break;
 
             default:
