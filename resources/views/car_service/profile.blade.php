@@ -20,7 +20,7 @@
                    @foreach (config('app.available_locales') as $locale)
                         <li class="nav-item">
                             <a class="nav-link"
-                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),app()->getLocale()) }}"
+                              href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),[app()->getLocale(),$plateNumber]) }}"
                                 @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
                         </li>
                     @endforeach
@@ -34,7 +34,7 @@
                         <div class="row">
                     @can('create-car-service')
                     <div class="float-right">
-                    <p>Create new service:</p>
+                    <p>Create new service</p>
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
                         <a class="text-white" href="{{ route('create_car_service', app()->getLocale()) }}">@lang('header.create_car_service')</a>
                     </button></div>  

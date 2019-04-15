@@ -54,27 +54,10 @@ class ImageController extends Controller
         
         $plateNumber = $responseResultArray["plate"];
 
-       $services = DB::table('cars')
-            ->leftJoin('car_services', 'cars.id', '=', 'car_services.car_id')
-            ->where('plate_number', $plateNumber)
-            ->get();
-
-        if($services->isEmpty()){
-            Session::flash('error', 'Number plate was not registered in data base!');
-            // return Redirect::to('/admin');
-            return redirect()->route('dashboard', app()->getLocale());
-        }
-            
-        foreach($services as $service){
-        $service_id = $service->id;
-            if( $service_id==null){
-                Session::flash('error', 'Service was not registered in data base!');
-                // return Redirect::to('/admin');
-                return redirect()->route('dashboard', app()->getLocale());
-            }
-        }  
-        return redirect()->route('profile_image', app()->getLocale());
+       
+        return redirect()->route('profile_image',[app()->getLocale(),$plateNumber]);
 
     
     }
+    
 }

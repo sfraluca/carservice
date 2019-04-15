@@ -61,8 +61,7 @@
                         <br> <br> <br>
                         <br> <br> <br>
                         <h2 class="text-white-50 mx-auto mt-3 mb-5">@lang('header.presentation')</h2>
-                        <a href="{{ route('login', app()->getLocale()) }}" class="btn menu js-scroll-trigger">@lang('header.getstarted')</a>
-                        </div>
+                       
                     </div>
             </div>
         </div>
