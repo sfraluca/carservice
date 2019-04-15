@@ -31,10 +31,10 @@ return [
     'save' => "Save changes",
     'datacar' => "Data about your car",
     'registeras' => "You are registered as",
-    'yourservices' => "Your service/services for requested numer plate is/are:",
-    'servicetitle' => "Service title:",
+    'yourservices' => "Your service/services for requested numer plate is/are",
+    'servicetitle' => "Service title",
     'servicedate' => "Service date",
-    'yourcar' => "Your car is:",
+    'yourcar' => "Your car is",
     'brand' => "Brand",
     'model' => "Model",
     'year' => "Year",
@@ -130,5 +130,9 @@ return [
     'getstarted' => "Get started",
     'subject' => "Subject",
     'aboutus' => "About us",
+    'pending' => "Pending",
+    'inservice' => "In service",
+    'done' => "Service done",
+    'state' => "Stare",
 ]
 ?>

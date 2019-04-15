@@ -19,6 +19,7 @@ class CreateCarServicesTable extends Migration
             $table->string('price');
             $table->string('description');
             $table->date('service_date');
+            $table->string('state');
             $table->integer('car_id')->unsigned();
             $table->foreign('car_id')->references('id')->on('cars');
             $table->integer('product_id')->unsigned();

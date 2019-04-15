@@ -139,6 +139,29 @@
                                         </span>
                                     @endif
                             </div>
+                            <div>
+                                <label for="state">@lang('header.state')</label>
+                                    <select id="state" 
+                                            type="text" 
+                                            class="form-control" 
+                                            name="state" 
+                                            value="{{ $services->state }}" 
+                                            required >
+                                    
+                                        
+                                            <option>@lang('header.pending')</option>
+                                            <option>@lang('header.inservice')</option>
+                                            <option>@lang('header.done')</option>
+
+                                       
+                                    </select>
+
+                                    @if ($errors->has('state'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('state') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
 
                             <button type="submit" class="btn btn-gradient-primary mr-2">@lang('header.submit')</button>
                         </form>

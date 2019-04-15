@@ -34,7 +34,7 @@
                         <div class="row">
                     @can('create-car-service')
                     <div class="float-right">
-                    <p>Create new service:</p>
+                    <p>Create new service</p>
                     <button type="submit" class="btn btn-gradient-success btn-icon-text float-right">                                                 
                         <a class="text-white" href="{{ route('create_car_service', app()->getLocale()) }}">@lang('header.create_car_service')</a>
                     </button></div>  
@@ -49,6 +49,7 @@
                                         <th>@lang('header.price')</th>
                                         <th>@lang('header.description')</th>
                                         <th>@lang('header.servicedate')</th>
+                                        <th>@lang('header.state')</th>
                                         <th>@lang('header.show')</th>
                                         @can('update-car-service')<th>@lang('header.edit')</th>@endcan
                                         @can('delete-car-service')<th>@lang('header.delete')</th>@endcan
@@ -62,6 +63,7 @@
                                         <td>{{ $service->price }}</td>
                                         <td>{{ $service->description }}</td>
                                         <td>{{ $service->service_date }}</td>
+                                        <td>{{ $service->state }}</td>
                                         <td>
                                             <form action ="{{ route('show_car_service', [app()->getLocale(),$service->id])}}">
                                                 <input type="hidden"/>

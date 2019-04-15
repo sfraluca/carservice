@@ -71,7 +71,8 @@ class CarServiceController extends Controller
             'description' => 'required',
             'service_date' => 'required',
             'car_id' => 'required',
-            'product_id' => 'required'
+            'product_id' => 'required',
+            'state' => 'required',
         ]);
             
         $services = new CarService;
@@ -81,6 +82,7 @@ class CarServiceController extends Controller
         $services->service_date = $request->service_date;
         $services->car_id = $request->car_id;
         $services->product_id = $request->product_id;
+        $services->state = $request->state;
         $services->save();
         
         return redirect()->route('show_car_service', [app()->getLocale(),$services->id]);
@@ -113,7 +115,8 @@ class CarServiceController extends Controller
             'description' => 'required',
             'service_date' => 'required',
             'car_id' => 'required',
-            'product_id' => 'required'
+            'product_id' => 'required',
+            'state' => 'required'
             ]); 
 
         $services = CarService::find($id);
@@ -125,6 +128,7 @@ class CarServiceController extends Controller
         $services->service_date = $request->input('service_date');
         $services->car_id = $request->input('car_id');
         $services->product_id = $request->input('product_id');
+        $services->state = $request->input('state');
 
         $services->save();
 

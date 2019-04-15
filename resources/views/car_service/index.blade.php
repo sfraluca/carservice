@@ -49,6 +49,7 @@
                                         <th>@lang('header.price')</th>
                                         <th>@lang('header.description')</th>
                                         <th>@lang('header.servicedate')</th>
+                                        <th>@lang('header.state')</th>
                                         <th>@lang('header.show')</th>
                                         @can('update-car-service')<th>@lang('header.edit')</th>@endcan
                                         @can('delete-car-service')<th>@lang('header.delete')</th>@endcan
@@ -62,6 +63,7 @@
                                         <td>{{ $service->price }}</td>
                                         <td>{{ $service->description }}</td>
                                         <td>{{ $service->service_date }}</td>
+                                        <td>{{ $service->state }}</td>
                                         <td>
                                             <form action ="{{ route('show_car_service', [app()->getLocale(),$service->id])}}">
                                                 <input type="hidden"/>

@@ -31,10 +31,10 @@ return [
     'save' => "Salvează schimbările",
     'datacar' => "Informații despre mașina ta",
     'registeras' => "Ești înregistrat ca",
-    'yourservices' => "Reparația/reparațiile tale pentru numărul de înmatriculare cerut este/sunt:",
+    'yourservices' => "Reparația/reparațiile tale pentru numărul de înmatriculare cerut este/sunt",
     'servicetitle' => "Titlul reparației",
     'servicedate' => "Data reparației",
-    'yourcar' => "Mașina ta este:",
+    'yourcar' => "Mașina ta este",
     'brand' => "Marcă",
     'model' => "Model",
     'year' => "An",
@@ -132,6 +132,9 @@ return [
     'getstarted' => "Să începem",
     'subject' => "Subiect",
     'aboutus' => "Despre aplicație",
+    'pending' => "În așteptare",
+    'inservice' => "În curs de reparație",
+    'done' => "Reparație finalizată",
 ]
 
 ?>

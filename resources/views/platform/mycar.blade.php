@@ -85,6 +85,14 @@
                                 {{ $service->service_date }}
                                 </div>
                             </div> 
+                            <div class="row">
+                                <div class="col-sm">
+                                @lang('header.state'):
+                                </div>
+                                <div class="col-sm text-left">
+                                {{ $service->state }}
+                                </div>
+                            </div> 
              
                         </li>
                                    
