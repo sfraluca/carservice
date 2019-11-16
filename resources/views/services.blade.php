@@ -99,13 +99,13 @@
       
     
         <h1>@lang('header.prices')</h1> 
-        @foreach ($products as $product)
+       @foreach ($products as $product)
         <div class="row">
                 <div class="col-4">
                     <div class="list-group" >
                     <a class="list-group-item shadow p-3 mb-5 bg-white rounded font-weight-bold" id="list-revision-list" data-toggle="list">{{ $product->title }}</a>
                     </div>
-                </div>
+                </div> 
             <div class="col-8">
                 <div>
                     <ul class="list-group">

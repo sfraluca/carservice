@@ -135,6 +135,7 @@ return [
     'pending' => "În așteptare",
     'inservice' => "În curs de reparație",
     'done' => "Reparație finalizată",
+    'helloadmin'=>'Salut Admin! Autentifică-te.'
 ]
 
 ?>

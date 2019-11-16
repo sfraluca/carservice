@@ -21,7 +21,7 @@
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.logout', app()->getLocale()) }}">Logout</a>
+                        <a class="nav-link" href="{{ route('web.logout', app()->getLocale()) }}">@lang('header.logout')</a>
                     </li>
                     
                     @else
